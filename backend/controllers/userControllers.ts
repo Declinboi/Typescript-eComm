@@ -24,10 +24,10 @@ export const createUser = asyncHandler(async (req: Request, res: Response): Prom
       createToken(res, newUser._id as mongoose.Types.ObjectId);
   
       res.status(201).json({
-        _id: newUser._id,
-        username: newUser.username,
-        email: newUser.email,
-        isAdmin: newUser.isAdmin,
+        newUser:{
+          ...newUser.toObject(),
+          password: undefined,
+        },
       });
     } catch (error) {
       res.status(400);
