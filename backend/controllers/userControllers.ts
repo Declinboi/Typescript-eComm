@@ -83,6 +83,7 @@ export const logoutUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 });
 
+// Get all Users
 export const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
@@ -98,6 +99,7 @@ export const getCurrentUserProfile = asyncHandler(
   }
 );
 
+// upadate User Profile
 export const updateCurrentUserProfile = asyncHandler(
   async (
     req: Request & { user?: { _id: string } },
@@ -121,10 +123,65 @@ export const updateCurrentUserProfile = asyncHandler(
     const updatedUser = await user.save();
 
     res.json({
-      _id: updatedUser._id,
-      username: updatedUser.username,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
+      updatedUser: {
+        ...updatedUser.toObject(),
+      },
+    });
+  }
+);
+
+// Delete Users
+export const deleteUserById = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+
+    if (user.isAdmin) {
+      res.status(400).json({ message: "Cannot delete admin user" });
+      return;
+    }
+
+    await User.deleteOne({ _id: user._id });
+    res.json({ message: "User removed" });
+  }
+);
+
+// get User by id
+
+export const getUserById = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
+    const user = await User.findById(req.params.id).select("-password");
+
+    user ? res.json(user) : res.status(404).json({ message: "User not found" });
+  }
+);
+
+// UPDATE USER BY ID
+export const updateUserById = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+
+    Object.assign(user, {
+      username: req.body.username || user.username,
+      email: req.body.email || user.email,
+      isAdmin: Boolean(req.body.isAdmin),
+    });
+
+    const updatedUser = await user.save();
+    res.status(200).json({
+      updatedUser: {
+        ...updatedUser.toObject(),
+        password: undefined,
+      },
     });
   }
 );

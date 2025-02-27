@@ -4,11 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 import Home from "./pages/Home.tsx";
+import { Provider } from "react-redux";
+import store from "./redux/store.ts";
+import Login from "./pages/Auth/Login.tsx";
 
 function AppRouter() {
-
-
-  
   const router = createBrowserRouter([
     {
       path: "/",
@@ -18,6 +18,11 @@ function AppRouter() {
           path: "/",
           element: <Home />,
         },
+
+        {
+          path: "/login",
+          element: <Login />,
+        },
       ],
     },
   ]);
@@ -25,6 +30,8 @@ function AppRouter() {
 }
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-    <AppRouter />
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
   </StrictMode>
 );
