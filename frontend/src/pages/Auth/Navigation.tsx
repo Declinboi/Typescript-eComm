@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Navigation.css";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  ChevronDown,
   Heart,
   HomeIcon,
   LogInIcon,
@@ -48,6 +49,7 @@ const Navigation = () => {
   };
 
   return (
+    // <div className="">
     <div
       style={{ zIndex: 9999 }}
       className={`${
@@ -81,8 +83,8 @@ const Navigation = () => {
           {/* <div className="absolute top-9">
             {cartItems.length > 0 && (
               <span>
-                <span className="px-1 py-0 text-sm text-white bg-pink-500 rounded-full">
-                  {cartItems.reduce((a, c) => a + c.qty, 0)}
+              <span className="px-1 py-0 text-sm text-white bg-pink-500 rounded-full">
+              {cartItems.reduce((a, c) => a + c.qty, 0)}
                 </span>
               </span>
             )}
@@ -100,39 +102,24 @@ const Navigation = () => {
         </Link>
       </div>
 
-      <div className="relative">
+      <div className="relative ">
         <button
           onClick={toggleDropdown}
-          className="flex items-center text-gray-800 focus:outline-none"
+          className=" mr-2 border-2 px-2 bg-gradient from bg-green-900 hover:bg-green-700 rounded-md border-green-900 flex items-center text-gray-800 focus:outline-none"
         >
-          {userInfo ? (
-            <span className="text-white">{userInfo.username}</span>
-          ) : (
-            <></>
-          )}
+          <span className="text-white">{userInfo?.username || "Guest"}</span>
           {userInfo && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`h-4 w-4 ml-1 ${
-                dropdownOpen ? "transform rotate-180" : ""
+            <ChevronDown
+              className={`h-4 w-4 text-white ml-1 transition-transform duration-200 ${
+                dropdownOpen ? "rotate-180" : ""
               }`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={dropdownOpen ? "M5 15l7-7 7 7" : "M19 9l-7 7-7-7"}
-              />
-            </svg>
+            />
           )}
         </button>
 
         {dropdownOpen && userInfo && (
           <ul
-            className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${
+            className={`absolute left-14 mt-2 mr-14 space-y-2 rounded-lg bg-gray-400 text-green-600 ${
               !userInfo.isAdmin ? "-top-20" : "-top-80"
             } `}
           >
@@ -220,6 +207,7 @@ const Navigation = () => {
         )}
       </div>
     </div>
+    // </div>
   );
 };
 

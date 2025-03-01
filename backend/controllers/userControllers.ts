@@ -65,9 +65,10 @@ export const loginUser = asyncHandler(
     createToken(res, existingUser._id as mongoose.Types.ObjectId);
 
     res.status(200).json({
-      existingUser: {
-        ...existingUser.toObject(),
-      },
+      _id: existingUser._id,
+      username: existingUser.username,
+      email: existingUser.email,
+      isAdmin: existingUser.isAdmin,
     });
   }
 );

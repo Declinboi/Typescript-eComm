@@ -7,6 +7,7 @@ import Home from "./pages/Home.tsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.ts";
 import Login from "./pages/Auth/Login.tsx";
+import Register from "./pages/Auth/Register.tsx";
 
 function AppRouter() {
   const router = createBrowserRouter([
@@ -22,6 +23,11 @@ function AppRouter() {
         {
           path: "/login",
           element: <Login />,
+        },
+
+        {
+          path: "/Register",
+          element: <Register />,
         },
       ],
     },

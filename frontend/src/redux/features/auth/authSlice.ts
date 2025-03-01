@@ -1,7 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getUserInfo = () => {
+  try {
+    return JSON.parse(localStorage.getItem("existingUser") || "null");
+  } catch (error) {
+    console.error("Error parsing userInfo from localStorage:", error);
+    return null;
+  }
+};
+
 const initialState = {
-  userInfo: JSON.parse(localStorage.getItem("userInfo") ?? "null"),
+  userInfo: getUserInfo(),
 };
 
 const authSlice = createSlice({
@@ -10,14 +19,15 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       state.userInfo = action.payload;
-      localStorage.setItem("userInfo", JSON.stringify(action.payload));
+      localStorage.setItem("existingUser", JSON.stringify(action.payload));
 
       const expirationTime = new Date().getTime() + 30 * 24 * 60 * 60 * 1000; // 30 days
       localStorage.setItem("expirationTime", expirationTime.toString());
     },
     logout: (state) => {
       state.userInfo = null;
-      localStorage.clear();
+      localStorage.removeItem("existingUser");
+      localStorage.removeItem("expirationTime");
     },
   },
 });
