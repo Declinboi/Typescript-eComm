@@ -53,19 +53,21 @@ const Register = () => {
   };
 
   return (
-    <section className="pl-[10rem] flex flex-wrap">
+    <div className="pl-[10rem] flex flex-wrap">
       <div className="mr-[4rem] mt-[5rem]">
         <h1 className="text-2xl font-semibold mb-4">Register</h1>
 
         <form onSubmit={submitHandler} className="container w-[40rem]">
           <Input
+            label="Username"
             icon={User}
             type="text"
-            placeholder="Full Name"
+            placeholder="Name"
             value={username}
             onChange={(e) => setName(e.target.value)}
           />
           <Input
+            label="Email Address"
             icon={Mail}
             type="email"
             placeholder="Email Address"
@@ -73,6 +75,7 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
+            label="Enter Password"
             icon={Lock}
             type="password"
             placeholder="Password"
@@ -80,8 +83,9 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Input
+            label="Confiirm Password"
             icon={Lock}
-            type="confirmpassword"
+            type="password"
             placeholder="ConfiirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -100,7 +104,7 @@ const Register = () => {
           <button
             disabled={isLoading}
             type="submit"
-            className="bg-green-500 relative text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
+            className="bg-green-500 relative text-white px-4 py-2 flex rounded cursor-pointer my-[1rem]"
           >
             {isLoading ? "Registering..." : "Register"}
             {isLoading && (
@@ -114,7 +118,7 @@ const Register = () => {
         alt=""
         className="h-[65rem] w-[59%] xl:block md:hidden sm:hidden rounded-lg"
       />
-    </section>
+    </div>
   );
 };
 

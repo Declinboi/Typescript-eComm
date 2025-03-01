@@ -25,9 +25,7 @@ export const createUser = asyncHandler(
       createToken(res, newUser._id as mongoose.Types.ObjectId);
 
       res.status(201).json({
-        newUser: {
-          ...newUser.toObject(),
-        },
+        ...newUser.toObject(),
       });
     } catch (error) {
       res.status(400);
@@ -65,10 +63,7 @@ export const loginUser = asyncHandler(
     createToken(res, existingUser._id as mongoose.Types.ObjectId);
 
     res.status(200).json({
-      _id: existingUser._id,
-      username: existingUser.username,
-      email: existingUser.email,
-      isAdmin: existingUser.isAdmin,
+      ...existingUser.toObject(),
     });
   }
 );
@@ -124,9 +119,7 @@ export const updateCurrentUserProfile = asyncHandler(
     const updatedUser = await user.save();
 
     res.json({
-      updatedUser: {
-        ...updatedUser.toObject(),
-      },
+      ...updatedUser.toObject(),
     });
   }
 );
@@ -179,10 +172,8 @@ export const updateUserById = asyncHandler(
 
     const updatedUser = await user.save();
     res.status(200).json({
-      updatedUser: {
-        ...updatedUser.toObject(),
-        password: undefined,
-      },
+      ...updatedUser.toObject(),
+      password: undefined,
     });
   }
 );

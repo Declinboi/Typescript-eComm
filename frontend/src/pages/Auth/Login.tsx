@@ -37,6 +37,7 @@ const Login = () => {
       console.log(res);
       dispatch(setCredentials(res)); // No need to spread `res`
       navigate(redirect);
+      toast.success("User successfully login");
     } catch (err: any) {
       toast.error(err?.data?.message || err.message || "Something went wrong");
     }
@@ -53,6 +54,7 @@ const Login = () => {
             className="container w-[20rem] sm:w-[40rem]"
           >
             <Input
+              label="Email Address"
               icon={Mail}
               type="email"
               placeholder="Email Address"
@@ -61,6 +63,7 @@ const Login = () => {
             />
 
             <Input
+              label="Password"
               icon={Lock}
               type="password"
               placeholder="Password"

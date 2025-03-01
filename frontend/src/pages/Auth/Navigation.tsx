@@ -8,6 +8,7 @@ import {
   LogInIcon,
   ShoppingBagIcon,
   ShoppingCart,
+  User,
   User2Icon,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +55,7 @@ const Navigation = () => {
       style={{ zIndex: 9999 }}
       className={`${
         showSidebar ? "hidden" : "flex"
-      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-[#000] w-[4%] hover:w-[15%] h-[100vh]  fixed `}
+      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-[#000] w-[5%] hover:w-[15%] h-[100vh]  fixed `}
       id="navigation-container"
     >
       <div className="flex flex-col justify-center space-y-4">
@@ -105,9 +106,12 @@ const Navigation = () => {
       <div className="relative ">
         <button
           onClick={toggleDropdown}
-          className=" mr-2 border-2 px-2 bg-gradient from bg-green-900 hover:bg-green-700 rounded-md border-green-900 flex items-center text-gray-800 focus:outline-none"
+          className=" border-2 px-2 bg-gradient-to-r from-green-600 to-emerald-900 rounded-md border-green-900 flex items-center text-gray-800 focus:outline-none"
         >
-          <span className="text-white">{userInfo?.username || "Guest"}</span>
+          <User className="h-5 w-5 mr-2 mt-[4px]"/>
+          <span className="text-white hidden nav-item-name uppercase">
+             {userInfo?.username || "Guest"}
+          </span>
           {userInfo && (
             <ChevronDown
               className={`h-4 w-4 text-white ml-1 transition-transform duration-200 ${
@@ -128,7 +132,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/dashboard"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Dashboard
                   </Link>
@@ -136,7 +140,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/productlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Products
                   </Link>
@@ -144,7 +148,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/categorylist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Category
                   </Link>
@@ -152,7 +156,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/orderlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Orders
                   </Link>
@@ -160,7 +164,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/userlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Users
                   </Link>
@@ -169,14 +173,14 @@ const Navigation = () => {
             )}
 
             <li>
-              <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
+              <Link to="/profile" className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100">
                 Profile
               </Link>
             </li>
             <li>
               <button
                 onClick={logoutHandler}
-                className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                className="block w-full px-4 py-2 text-left hover:rounded-lg hover:bg-gray-100"
               >
                 Logout
               </button>

@@ -8,6 +8,9 @@ import { Provider } from "react-redux";
 import store from "./redux/store.ts";
 import Login from "./pages/Auth/Login.tsx";
 import Register from "./pages/Auth/Register.tsx";
+import PrivateRoute from "./components/PrivateRoute.tsx";
+import Profile from "./pages/User/Profile.tsx";
+import AdminRoutes from "./pages/Admin/AdminRoutes.tsx";
 
 function AppRouter() {
   const router = createBrowserRouter([
@@ -18,6 +21,27 @@ function AppRouter() {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          element: <PrivateRoute />,
+          children: [
+            // Protected routes in a wrapper
+            //{
+              { path: "/profile", element: <Profile /> },
+              // { path: "/contact", element: <Contact /> },
+            //},
+          ],
+        },
+
+        {
+          element: <AdminRoutes />,
+          children: [
+            // Protected routes in a wrapper
+            //{
+              { path: "/profile", element: <Profile /> },
+              // { path: "/contact", element: <Contact /> },
+            //},
+          ],
         },
 
         {
