@@ -108,9 +108,9 @@ const Navigation = () => {
           onClick={toggleDropdown}
           className=" border-2 px-2 bg-gradient-to-r from-green-600 to-emerald-900 rounded-md border-green-900 flex items-center text-gray-800 focus:outline-none"
         >
-          <User className="h-5 w-5 mr-2 mt-[4px]"/>
+          <User className="h-5 w-5 mr-2 mt-[4px]" />
           <span className="text-white hidden nav-item-name uppercase">
-             {userInfo?.username || "Guest"}
+            {userInfo?.username || "Guest"}
           </span>
           {userInfo && (
             <ChevronDown
@@ -163,7 +163,7 @@ const Navigation = () => {
                 </li>
                 <li>
                   <Link
-                    to="/admin/userlist"
+                    to="/userlist"
                     className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Users
@@ -173,7 +173,10 @@ const Navigation = () => {
             )}
 
             <li>
-              <Link to="/profile" className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100">
+              <Link
+                to="/profile"
+                className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
+              >
                 Profile
               </Link>
             </li>

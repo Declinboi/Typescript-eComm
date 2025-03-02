@@ -1,5 +1,8 @@
 import { apiSlice } from "./apiSlice";
 import { USERS_URL } from "../constants";
+import { User } from "../../pages/Admin/UsersList";
+// import { User } from "./type";
+// import { User } from "../../pages/Admin/UsersList";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,7 +20,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    logout: builder.mutation <void, void>({
+    logout: builder.mutation<void, void>({
       query: () => ({
         url: `${USERS_URL}/logout`,
         method: "POST",
@@ -30,13 +33,16 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    getUsers: builder.query({
+
+    // only where i use the type.ts file
+    getUsers: builder.query <User[], void>({
       query: () => ({
         url: USERS_URL,
       }),
       providesTags: ["User"],
       keepUnusedDataFor: 5,
     }),
+
     deleteUser: builder.mutation({
       query: (userId) => ({
         url: `${USERS_URL}/${userId}`,

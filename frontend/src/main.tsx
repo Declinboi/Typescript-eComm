@@ -11,6 +11,8 @@ import Register from "./pages/Auth/Register.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
 import Profile from "./pages/User/Profile.tsx";
 import AdminRoutes from "./pages/Admin/AdminRoutes.tsx";
+import UserList from "./pages/Admin/UsersList.tsx";
+// import UserList from "./pages/Admin/UsersList.tsx";
 
 function AppRouter() {
   const router = createBrowserRouter([
@@ -38,7 +40,7 @@ function AppRouter() {
           children: [
             // Protected routes in a wrapper
             //{
-              { path: "/profile", element: <Profile /> },
+              { path: "/userlist", element: <UserList /> },
               // { path: "/contact", element: <Contact /> },
             //},
           ],
