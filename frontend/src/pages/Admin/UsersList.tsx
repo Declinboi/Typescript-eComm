@@ -64,7 +64,7 @@ const UserList: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Users</h1>
+      <h1 className="text-2xl text-center font-semibold mb-4">Users List</h1>
       {isLoading ? (
         <Loader />
       ) : error ? (
