@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import Message from "../../components/Message";
 import Input from "../../components/Input";
 // ⚠️⚠️⚠️ don't forget this ⚠️⚠️⚠️⚠️
-// import AdminMenu from "./AdminMenu";
+import AdminMenu from "./AdminMenu";
 export interface User {
   _id: string;
   username: string;
@@ -76,7 +76,7 @@ const UserList: React.FC = () => {
         </Message>
       ) : (
         <div className="flex flex-col md:flex-row">
-          {/* <AdminMenu /> */}
+          <AdminMenu />
           <table className="w-full md:w-4/5 mx-auto">
             <thead>
               <tr>

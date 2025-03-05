@@ -13,7 +13,7 @@ interface IUser {
 }
 
 // Extend Express Request to include `user`
-interface AuthenticatedRequest extends Request {
+export interface AuthenticatedRequest extends Request {
   user?: IUser;
 }
 
