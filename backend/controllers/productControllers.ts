@@ -5,24 +5,29 @@ import { AuthenticatedRequest } from "../middlewares/authHandler"; // Ensure thi
 
 const addProduct = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-    const { name, description, price, category, quantity, brand } =
-      req.fields as {
-        name?: string;
-        description?: string;
-        price?: string;
-        category?: string;
-        quantity?: string;
-        brand?: string;
-      };
+    try {
+      const { name, description, price, category, quantity, brand } =
+        req.fields as {
+          name?: string;
+          description?: string;
+          price?: string;
+          category?: string;
+          quantity?: string;
+          brand?: string;
+        };
 
-    if (!name || !brand || !description || !price || !category || !quantity) {
-      res.status(400).json({ error: "All fields are required" });
-      return;
+      if (!name || !brand || !description || !price || !category || !quantity) {
+        res.status(400).json({ error: "All fields are required" });
+        return;
+      }
+
+      const product = new Product({ ...req.fields });
+      await product.save();
+      res.json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json((error as Error).message);
     }
-
-    const product = new Product({ ...req.fields });
-    await product.save();
-    res.json(product);
   }
 );
 
@@ -127,6 +132,7 @@ const fetchAllProducts = asyncHandler(
         .limit(12)
         .sort({ createdAt: -1 });
       res.json(products);
+
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Server Error" });
@@ -141,7 +147,7 @@ const addProductReview = asyncHandler(
     next: NextFunction
   ): Promise<void> => {
     try {
-      const { rating, comment } = req.fields as {
+      const { rating, comment } = req.body as {
         rating?: string;
         comment?: string;
       };
@@ -216,7 +222,7 @@ const fetchNewProducts = asyncHandler(
 const filterProducts = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
-      const { checked, radio } = req.fields as {
+      const { checked, radio } = req.body as {
         checked?: string[];
         radio?: number[];
       };

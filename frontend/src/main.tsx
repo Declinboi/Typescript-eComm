@@ -13,6 +13,7 @@ import Profile from "./pages/User/Profile.tsx";
 import AdminRoutes from "./pages/Admin/AdminRoutes.tsx";
 import UserList from "./pages/Admin/UsersList.tsx";
 import CategoryList from "./pages/Admin/CategoryList.tsx";
+import ProductList from "./pages/Admin/ProductList.tsx";
 // import UserList from "./pages/Admin/UsersList.tsx";
 
 function AppRouter() {
@@ -42,6 +43,7 @@ function AppRouter() {
 
             { path: "/userlist", element: <UserList /> },
             { path: "/categorylist", element: <CategoryList /> },
+            { path: "/productlist", element: <ProductList /> },
           ],
         },
 

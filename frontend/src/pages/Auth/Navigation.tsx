@@ -131,7 +131,7 @@ const Navigation = () => {
               <>
                 <li>
                   <Link
-                    to="/admin/dashboard"
+                    to="/dashboard"
                     className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Dashboard
@@ -139,7 +139,7 @@ const Navigation = () => {
                 </li>
                 <li>
                   <Link
-                    to="/admin/productlist"
+                    to="/productlist"
                     className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Products
@@ -147,7 +147,7 @@ const Navigation = () => {
                 </li>
                 <li>
                   <Link
-                    to="/admin/categorylist"
+                    to="/categorylist"
                     className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Category
@@ -155,7 +155,7 @@ const Navigation = () => {
                 </li>
                 <li>
                   <Link
-                    to="/admin/orderlist"
+                    to="/orderlist"
                     className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Orders

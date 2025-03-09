@@ -1,8 +1,6 @@
 import { apiSlice } from "./apiSlice";
 import { USERS_URL } from "../constants";
 import { User } from "../../pages/Admin/UsersList";
-// import { User } from "./type";
-// import { User } from "../../pages/Admin/UsersList";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
