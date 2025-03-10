@@ -7,6 +7,7 @@ import {
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
 import AdminMenu from "./AdminMenu";
+import Input from "../../components/Input";
 
 const ProductList = () => {
   // const [image, setImage] = useState("");
@@ -75,7 +76,7 @@ const ProductList = () => {
   const [brand, setBrand] = useState<string>("");
   const [stock, setStock] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  
+
   const navigate = useNavigate();
 
   const [uploadProductImage] = useUploadProductImageMutation();
@@ -147,7 +148,7 @@ const ProductList = () => {
           )}
 
           <div className="mb-3">
-            <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+            <label className="border border-emerald-950 text-black px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11 ">
               {image ? image.name : "Upload Image"}
 
               <input
@@ -155,27 +156,25 @@ const ProductList = () => {
                 name="image"
                 accept="image/*"
                 onChange={uploadFileHandler}
-                className={!image ? "hidden" : "text-white"}
+                className={!image ? "hidden" : "text-black"}
               />
             </label>
           </div>
 
-          <div className="p-3">
+          <form className="p-3" onSubmit={handleSubmit}>
             <div className="flex flex-wrap">
               <div className="one">
                 <label htmlFor="name">Name</label> <br />
-                <input
+                <Input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="two ml-10 ">
                 <label htmlFor="name block">Price</label> <br />
-                <input
+                <Input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -184,18 +183,16 @@ const ProductList = () => {
             <div className="flex flex-wrap">
               <div className="one">
                 <label htmlFor="name block">Quantity</label> <br />
-                <input
+                <Input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
               <div className="two ml-10 ">
                 <label htmlFor="name block">Brand</label> <br />
-                <input
+                <Input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                 />
@@ -205,31 +202,32 @@ const ProductList = () => {
             <label htmlFor="" className="my-5">
               Description
             </label>
-            <textarea
+            <Input
               type="text"
-              className="p-2 mb-3 bg-[#101011] border rounded-lg w-[95%] text-white"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+            ></Input>
 
             <div className="flex justify-between">
               <div>
                 <label htmlFor="name block">Count In Stock</label> <br />
-                <input
+                <Input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   value={stock}
-                  onChange={(e) => setStock(e.target.value)}
+                  onChange={(e) => setStock(Number(e.target.value))}
                 />
               </div>
 
               <div>
-                <label htmlFor="">Category</label> <br />
+                <label>Category</label> <br />
                 <select
-                  placeholder="Choose Category"
                   className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
                   onChange={(e) => setCategory(e.target.value)}
+                  defaultValue=""
                 >
+                  <option value="" disabled>
+                    Choose Category
+                  </option>
                   {categories?.map((c) => (
                     <option key={c._id} value={c._id}>
                       {c.name}
@@ -240,12 +238,12 @@ const ProductList = () => {
             </div>
 
             <button
-              onClick={handleSubmit}
+              type="submit"
               className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600"
             >
               Submit
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
