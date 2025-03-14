@@ -8,8 +8,8 @@ import {
 import { toast } from "react-toastify";
 import Message from "../../components/Message";
 import Input from "../../components/Input";
-// ⚠️⚠️⚠️ don't forget this ⚠️⚠️⚠️⚠️
 import AdminMenu from "./AdminMenu";
+
 export interface User {
   _id: string;
   username: string;
@@ -69,10 +69,8 @@ const UserList: React.FC = () => {
         <Loader />
       ) : error ? (
         <Message variant="error">
-          //{" "}
           {(error as { data?: { message?: string }; error?: string })?.data
             ?.message || (error as { error?: string })?.error}
-          //{" "}
         </Message>
       ) : (
         <div className="flex flex-col md:flex-row">

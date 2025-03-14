@@ -1,53 +1,82 @@
 // import path from "path";
-// import express from "express";
-// import multer from "multer";
-
+// import express, { Request, Response } from "express";
+// import multer, { FileFilterCallback, MulterError } from "multer";
+// import fs from "fs";
+// import { fileURLToPath } from "url";
 // const router = express.Router();
 
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "./uploads/");
-//   },
+// // ✅ Fix: Define `__dirname` for ESM compatibility
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// // const __dirname = path.resolve();
+// const uploadDir: string = path.join(__dirname, "uploads");
 
-//   filename: (req, file, cb) => {
-//     const extname = path.extname(file.originalname);
+// // ✅ Ensure uploads directory exists
+// if (!fs.existsSync(uploadDir)) {
+//   fs.mkdirSync(uploadDir, { recursive: true });
+// }
+
+// // ✅ Multer storage configuration
+// const storage = multer.diskStorage({
+//   destination: (_req, _file, cb) => {
+//     cb(null, uploadDir);
+//   },
+//   filename: (_req, file, cb) => {
+//     const extname: string = path.extname(file.originalname);
 //     cb(null, `${file.fieldname}-${Date.now()}${extname}`);
 //   },
 // });
 
-// const fileFilter = (req, file, cb) => {
-//   const filetypes = /jpe?g|png|webp/;
-//   const mimetypes = /image\/jpe?g|image\/png|image\/webp/;
+// // ✅ File filter function
+// const fileFilter = (
+//   _req: Request,
+//   file: Express.Multer.File,
+//   cb: FileFilterCallback
+// ) => {
+//   const allowedTypes: string[] = ["image/jpeg", "image/png", "image/webp"];
 
-//   const extname = path.extname(file.originalname).toLowerCase();
-//   const mimetype = file.mimetype;
-
-//   if (filetypes.test(extname) && mimetypes.test(mimetype)) {
+//   if (allowedTypes.includes(file.mimetype)) {
 //     cb(null, true);
 //   } else {
-//     cb(new Error("Images only"), false);
+//     cb(new MulterError("LIMIT_UNEXPECTED_FILE", "Invalid file type"));
 //   }
 // };
 
 // const upload = multer({ storage, fileFilter });
 // const uploadSingleImage = upload.single("image");
 
-// router.post("/", (req, res) => {
-//   uploadSingleImage(req, res, (err) => {
+// // ✅ Upload route
+// router.post("/", (req: Request, res: Response) => {
+//   uploadSingleImage(req, res, (err?: any) => {
 //     if (err) {
-//       res.status(400).send({ message: err.message });
-//     } else if (req.file) {
-//       res.status(200).send({
-//         message: "Image uploaded successfully",
-//         image: `/${req.file.path}`,
-//       });
-//     } else {
-//       res.status(400).send({ message: "No image file provided" });
+//       console.error("Upload error:", err);
+
+//       if (err instanceof MulterError) {
+//         return res.status(400).json({ message: `Multer error: ${err.message}` });
+//       }
+
+//       return res.status(400).json({ message: err.message || "Upload failed" });
 //     }
+
+//     if (!req.file) {
+//       return res.status(400).json({ message: "No image file provided" });
+//     }
+
+//     // ✅ Fix: Use correct path for response
+//     const imagePath: string = `./uploads/${req.file.filename}`;
+
+//     res.status(200).json({
+//       message: "Image uploaded successfully",
+//       image: imagePath,
+//     });
 //   });
 // });
 
 // export default router;
+
+
+
+
 
 import path from "path";
 import express, { Request, Response } from "express";
@@ -57,7 +86,7 @@ import fs from "fs";
 const router = express.Router();
 
 // Ensure uploads directory exists
-const uploadDir = path.resolve("./uploads");
+export const uploadDir = path.resolve("./uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }

@@ -10,63 +10,6 @@ import AdminMenu from "./AdminMenu";
 import Input from "../../components/Input";
 
 const ProductList = () => {
-  // const [image, setImage] = useState("");
-  // const [name, setName] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [category, setCategory] = useState("");
-  // const [quantity, setQuantity] = useState("");
-  // const [brand, setBrand] = useState("");
-  // const [stock, setStock] = useState(0);
-  // const [imageUrl, setImageUrl] = useState(null);
-  // const navigate = useNavigate();
-
-  // const [uploadProductImage] = useUploadProductImageMutation();
-  // const [createProduct] = useCreateProductMutation();
-  // const { data: categories } = useFetchCategoriesQuery();
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const productData = new FormData();
-  //     productData.append("image", image);
-  //     productData.append("name", name);
-  //     productData.append("description", description);
-  //     productData.append("price", price);
-  //     productData.append("category", category);
-  //     productData.append("quantity", quantity);
-  //     productData.append("brand", brand);
-  //     productData.append("countInStock", stock);
-
-  //     const { data } = await createProduct(productData);
-
-  //     if (data.error) {
-  //       toast.error("Product create failed. Try Again.");
-  //     } else {
-  //       toast.success(`${data.name} is created`);
-  //       navigate("/");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Product create failed. Try Again.");
-  //   }
-  // };
-
-  // const uploadFileHandler = async (e) => {
-  //   const formData = new FormData();
-  //   formData.append("image", e.target.files[0]);
-
-  //   try {
-  //     const res = await uploadProductImage(formData).unwrap();
-  //     toast.success(res.message);
-  //     setImage(res.image);
-  //     setImageUrl(res.image);
-  //   } catch (error) {
-  //     toast.error(error?.data?.message || error.error);
-  //   }
-  // };
-
   const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
