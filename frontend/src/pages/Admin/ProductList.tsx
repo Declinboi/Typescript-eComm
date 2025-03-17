@@ -55,6 +55,27 @@ const ProductList = () => {
     }
   };
 
+// const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+//   if (!e.target.files || e.target.files.length === 0) return;
+
+//   const file = e.target.files[0];
+//   const formData = new FormData();
+//   formData.append("image", file);
+
+//   try {
+//     const res = await uploadProductImage(formData).unwrap();
+//     console.log("Upload Response:", res); // Debugging
+//     toast.success(res.message);
+
+//     const fullImageUrl = `http://localhost:5000${res.image}`;
+//     setImage(file);
+//     setImageUrl(fullImageUrl); // Ensure it's a full URL
+//   } catch (error: any) {
+//     toast.error(error?.data?.message || error.error);
+//   }
+// };
+
+
   // Handle image upload
   const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
@@ -99,7 +120,7 @@ const ProductList = () => {
                 name="image"
                 accept="image/*"
                 onChange={uploadFileHandler}
-                className={!image ? "hidden" : "text-black"}
+                className={!image ? "hidden" : "text-white"}
               />
             </label>
           </div>

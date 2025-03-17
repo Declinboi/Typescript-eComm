@@ -1,4 +1,3 @@
-
 import path from "path";
 import express from "express";
 import "dotenv/config";
@@ -8,13 +7,14 @@ import userRoutes from "../routes/userRoutes";
 import categoryRoutes from "../routes/categoryRoutes";
 import productRoutes from "../routes/productRoutes";
 import uploadRoutes from "../routes/uploadRoutes";
-import { fileURLToPath } from "url";
+import cors from "cors"
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
 connectDB();
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,10 +27,7 @@ app.use("/api/upload", uploadRoutes);
 
 
 
-
-app.use("./uploads", express.static(path.join(__dirname, "./uploads")))
-
-
+app.use("/uploads", express.static(path.resolve("uploads")));
 
 app.listen(PORT, () => {
   console.log("server is listen on port:", PORT);
