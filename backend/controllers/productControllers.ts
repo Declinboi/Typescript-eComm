@@ -3,6 +3,7 @@ import asyncHandler from "../middlewares/asyncHandler";
 import Product from "../models/productModels";
 import { AuthenticatedRequest } from "../middlewares/authHandler"; // Ensure this includes `user`
 
+
 const addProduct = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
@@ -22,14 +23,20 @@ const addProduct = asyncHandler(
       }
 
       const product = new Product({ ...req.fields });
-      await product.save();
-      res.json(product);
+      
+    const savedProduct = await product.save();
+    console.log("Product saved:", savedProduct);
+
+    res.status(201).json(savedProduct);
     } catch (error) {
       console.error(error);
       res.status(400).json((error as Error).message);
     }
   }
 );
+
+
+
 
 const updateProductDetails = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
@@ -84,29 +91,59 @@ const removeProduct = asyncHandler(
   }
 );
 
+// const fetchProducts = asyncHandler(
+//   async (req: Request, res: Response): Promise<void> => {
+//     try {
+//       const pageSize = 6;
+//       const keyword = req.query.keyword
+//         ? { name: { $regex: req.query.keyword, $options: "i" } }
+//         : {};
+
+//       const count = await Product.countDocuments({ ...keyword });
+//       const products = await Product.find({ ...keyword }).limit(pageSize);
+
+//       res.json({
+//         products,
+//         page: 1,
+//         pages: Math.ceil(count / pageSize),
+//         hasMore: false,
+//       });
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ error: "Server Error" });
+//     }
+//   }
+// );
+
 const fetchProducts = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const pageSize = 6;
+      const page = Number(req.query.page) || 1; // ✅ Read dynamic page number
       const keyword = req.query.keyword
         ? { name: { $regex: req.query.keyword, $options: "i" } }
         : {};
 
       const count = await Product.countDocuments({ ...keyword });
-      const products = await Product.find({ ...keyword }).limit(pageSize);
+
+      // ✅ Fetch correct page data using `skip()`
+      const products = await Product.find({ ...keyword })
+        .limit(pageSize)
+        .skip(pageSize * (page - 1));
 
       res.json({
         products,
-        page: 1,
+        page,
         pages: Math.ceil(count / pageSize),
-        hasMore: false,
+        hasMore: page * pageSize < count, // ✅ Check if more pages exist
       });
     } catch (error) {
-      console.error(error);
+      console.error("❌ Error fetching products:", error);
       res.status(500).json({ error: "Server Error" });
     }
   }
 );
+
 
 const fetchProductById = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {

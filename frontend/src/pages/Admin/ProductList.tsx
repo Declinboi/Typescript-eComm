@@ -29,52 +29,33 @@ const ProductList = () => {
   // Handle form submission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     try {
       const productData = new FormData();
       if (image) productData.append("image", image);
       productData.append("name", name);
       productData.append("description", description);
-      productData.append("price", price);
+      productData.append("price", price.toString());
       productData.append("category", category);
-      productData.append("quantity", quantity);
+      productData.append("quantity", quantity.toString());
       productData.append("brand", brand);
       productData.append("countInStock", stock.toString());
-
+  
       const { data } = await createProduct(productData);
-
+      console.log("Response:", data);
+  
       if (data?.error) {
         toast.error("Product creation failed. Try again.");
       } else {
-        toast.success(`${data.name} is created`);
+        toast.success(`${data?.name} is created`);
         navigate("/");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error("❌ Error submitting product:", error);
       toast.error("Product creation failed. Try again.");
     }
   };
-
-// const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
-//   if (!e.target.files || e.target.files.length === 0) return;
-
-//   const file = e.target.files[0];
-//   const formData = new FormData();
-//   formData.append("image", file);
-
-//   try {
-//     const res = await uploadProductImage(formData).unwrap();
-//     console.log("Upload Response:", res); // Debugging
-//     toast.success(res.message);
-
-//     const fullImageUrl = `http://localhost:5000${res.image}`;
-//     setImage(file);
-//     setImageUrl(fullImageUrl); // Ensure it's a full URL
-//   } catch (error: any) {
-//     toast.error(error?.data?.message || error.error);
-//   }
-// };
-
+  
 
   // Handle image upload
   const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -86,6 +67,7 @@ const ProductList = () => {
 
     try {
       const res = await uploadProductImage(formData).unwrap();
+      console.log("Upload Response:", res)
       toast.success(res.message);
       setImage(file);
       setImageUrl(res.image);
