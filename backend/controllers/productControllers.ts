@@ -2,41 +2,54 @@ import { Request, Response, NextFunction } from "express";
 import asyncHandler from "../middlewares/asyncHandler";
 import Product from "../models/productModels";
 import { AuthenticatedRequest } from "../middlewares/authHandler"; // Ensure this includes `user`
-
+import mongoose from "mongoose";
 
 const addProduct = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
-      const { name, description, price, category, quantity, brand } =
-        req.fields as {
-          name?: string;
-          description?: string;
-          price?: string;
-          category?: string;
-          quantity?: string;
-          brand?: string;
-        };
+      const {
+        name,
+        description,
+        price,
+        category,
+        quantity,
+        brand,
+        countInStock,
+      } = req.body as {
+        name?: string;
+        description?: string;
+        price?: string | number;
+        category?: string;
+        quantity?: string | number;
+        brand?: string;
+        countInStock?: string | number;
+      };
 
-      if (!name || !brand || !description || !price || !category || !quantity) {
-        res.status(400).json({ error: "All fields are required" });
-        return;
-      }
+      // Get image file path from Multer
+      const image = req.file ? `/uploads/${req.file.filename}` : "";
 
-      const product = new Product({ ...req.fields });
-      
-    const savedProduct = await product.save();
-    console.log("Product saved:", savedProduct);
+      // Create a new product, converting numeric fields and category as needed.
+      const newProduct = new Product({
+        name,
+        description,
+        price: Number(price),
+        category,
+        quantity: Number(quantity),
+        brand,
+        countInStock: Number(countInStock), // Convert if necessary
+        image,
+      });
 
-    res.status(201).json(savedProduct);
+      const savedProduct = await newProduct.save();
+      console.log("Product saved:", savedProduct);
+
+      res.status(201).json({ ...savedProduct.toObject() });
     } catch (error) {
       console.error(error);
-      res.status(400).json((error as Error).message);
+      res.status(400).json({ error: (error as Error).message });
     }
   }
 );
-
-
-
 
 const updateProductDetails = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
@@ -50,11 +63,6 @@ const updateProductDetails = asyncHandler(
           quantity?: string;
           brand?: string;
         };
-
-      if (!name || !brand || !description || !price || !category || !quantity) {
-        res.status(400).json({ error: "All fields are required" });
-        return;
-      }
 
       const product = await Product.findByIdAndUpdate(
         req.params.id,
@@ -91,30 +99,6 @@ const removeProduct = asyncHandler(
   }
 );
 
-// const fetchProducts = asyncHandler(
-//   async (req: Request, res: Response): Promise<void> => {
-//     try {
-//       const pageSize = 6;
-//       const keyword = req.query.keyword
-//         ? { name: { $regex: req.query.keyword, $options: "i" } }
-//         : {};
-
-//       const count = await Product.countDocuments({ ...keyword });
-//       const products = await Product.find({ ...keyword }).limit(pageSize);
-
-//       res.json({
-//         products,
-//         page: 1,
-//         pages: Math.ceil(count / pageSize),
-//         hasMore: false,
-//       });
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: "Server Error" });
-//     }
-//   }
-// );
-
 const fetchProducts = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
@@ -144,7 +128,6 @@ const fetchProducts = asyncHandler(
   }
 );
 
-
 const fetchProductById = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
@@ -169,7 +152,6 @@ const fetchAllProducts = asyncHandler(
         .limit(12)
         .sort({ createdAt: -1 });
       res.json(products);
-
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Server Error" });

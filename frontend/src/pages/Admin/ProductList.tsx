@@ -40,8 +40,12 @@ const ProductList = () => {
       productData.append("quantity", quantity.toString());
       productData.append("brand", brand);
       productData.append("countInStock", stock.toString());
+
+      for (const [key, value] of productData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
   
-      const { data } = await createProduct(productData);
+      const { data } = await createProduct(productData).unwrap();
       console.log("Response:", data);
   
       if (data?.error) {
