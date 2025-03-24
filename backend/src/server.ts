@@ -29,6 +29,6 @@ app.use("/api/upload", uploadRoutes);
 
 app.use("/uploads", express.static(path.resolve("uploads")));
 
-app.listen(PORT, () => {
+app.listen(PORT,  () => {
   console.log("server is listen on port:", PORT);
 });

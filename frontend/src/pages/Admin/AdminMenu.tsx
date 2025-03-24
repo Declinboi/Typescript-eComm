@@ -32,7 +32,7 @@ const AdminMenu = () => {
             <li>
               <NavLink
                 className="list-item py-2 px-3 block mb-5 hover:bg-[#2E2D2D] rounded-sm"
-                to="/admin/dashboard"
+                to="/dashboard"
                 style={({ isActive }) => ({
                   color: isActive ? "greenyellow" : "white",
                 })}
@@ -43,7 +43,7 @@ const AdminMenu = () => {
             <li>
               <NavLink
                 className="list-item py-2 px-3 block mb-5 hover:bg-[#2E2D2D] rounded-sm"
-                to="/admin/categorylist"
+                to="/categorylist"
                 style={({ isActive }) => ({
                   color: isActive ? "greenyellow" : "white",
                 })}
@@ -54,7 +54,7 @@ const AdminMenu = () => {
             <li>
               <NavLink
                 className="list-item py-2 px-3 block mb-5 hover:bg-[#2E2D2D] rounded-sm"
-                to="/admin/productlist"
+                to="/productlist/:pageNumber"
                 style={({ isActive }) => ({
                   color: isActive ? "greenyellow" : "white",
                 })}
@@ -65,7 +65,7 @@ const AdminMenu = () => {
             <li>
               <NavLink
                 className="list-item py-2 px-3 block mb-5 hover:bg-[#2E2D2D] rounded-sm"
-                to="/admin/allproductslist"
+                to="/allproducts"
                 style={({ isActive }) => ({
                   color: isActive ? "greenyellow" : "white",
                 })}
@@ -76,7 +76,7 @@ const AdminMenu = () => {
             <li>
               <NavLink
                 className="list-item py-2 px-3 block mb-5 hover:bg-[#2E2D2D] rounded-sm"
-                to="/admin/userlist"
+                to="/userlist"
                 style={({ isActive }) => ({
                   color: isActive ? "greenyellow" : "white",
                 })}
@@ -87,7 +87,7 @@ const AdminMenu = () => {
             <li>
               <NavLink
                 className="list-item py-2 px-3 block mb-5 hover:bg-[#2E2D2D] rounded-sm"
-                to="/admin/orderlist"
+                to="/orderlist"
                 style={({ isActive }) => ({
                   color: isActive ? "greenyellow" : "white",
                 })}

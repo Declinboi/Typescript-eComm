@@ -43,7 +43,7 @@ const addProduct = asyncHandler(
       const savedProduct = await newProduct.save();
       console.log("Product saved:", savedProduct);
 
-      res.status(201).json({ ...savedProduct.toObject() });
+      res.status(201).json(savedProduct.toObject());
     } catch (error) {
       console.error(error);
       res.status(400).json({ error: (error as Error).message });
@@ -54,19 +54,39 @@ const addProduct = asyncHandler(
 const updateProductDetails = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
-      const { name, description, price, category, quantity, brand } =
-        req.fields as {
-          name?: string;
-          description?: string;
-          price?: string;
-          category?: string;
-          quantity?: string;
-          brand?: string;
-        };
+      const {
+        name,
+        description,
+        price,
+        category,
+        quantity,
+        brand,
+        countInStock,
+      } = req.body as {
+        name?: string;
+        description?: string;
+        price?: string | number;
+        category?: string;
+        quantity?: string | number;
+        brand?: string;
+        countInStock?: string | number;
+      };
+
+      // Get image file path from Multer
+      const image = req.file ? `/uploads/${req.file.filename}` : "";
 
       const product = await Product.findByIdAndUpdate(
         req.params.id,
-        { ...req.fields },
+        {
+          name,
+          description,
+          price: Number(price),
+          category,
+          quantity: Number(quantity),
+          brand,
+          countInStock: Number(countInStock), // Convert if necessary
+          image,
+        },
         { new: true }
       );
 
@@ -74,8 +94,10 @@ const updateProductDetails = asyncHandler(
         res.status(404).json({ error: "Product not found" });
         return;
       }
+      // Save the updated product
+      const updatedProduct = await product.save();
 
-      res.json(product);
+      res.json(updatedProduct.toObject());
     } catch (error) {
       console.error(error);
       res.status(400).json({ error: (error as Error).message });

@@ -139,7 +139,7 @@ const Navigation = () => {
                 </li>
                 <li>
                   <Link
-                    to="/productlist"
+                    to="/productlist/:pageNumber"
                     className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
                   >
                     Products

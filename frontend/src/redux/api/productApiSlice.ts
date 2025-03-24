@@ -1,3 +1,4 @@
+import { Product } from "../../pages/Admin/AllProducts";
 import { PRODUCT_URL, UPLOAD_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
@@ -19,7 +20,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       ],
     }),
 
-    allProducts: builder.query({
+    allProducts: builder.query <Product[], void>  ({
       query: () => `${PRODUCT_URL}/allProducts`,
     }),
 
@@ -71,17 +72,17 @@ export const productApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-    getTopProducts: builder.query({
+    getTopProducts: builder.query <Product[], void> ({
       query: () => `${PRODUCT_URL}/top`,
       keepUnusedDataFor: 5,
     }),
 
-    getNewProducts: builder.query({
+    getNewProducts: builder.query <Product[], void>   ({
       query: () => `${PRODUCT_URL}/new`,
       keepUnusedDataFor: 5,
     }),
 
-    getFilteredProducts: builder.query({
+    getFilteredProducts: builder.query ({
       query: ({ checked, radio }) => ({
         url: `${PRODUCT_URL}/filtered-products`,
         method: "POST",

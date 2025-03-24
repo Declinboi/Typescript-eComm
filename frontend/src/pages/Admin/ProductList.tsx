@@ -8,6 +8,7 @@ import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
 import AdminMenu from "./AdminMenu";
 import Input from "../../components/Input";
+import { Category } from "./CategoryList";
 
 const ProductList = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -45,13 +46,13 @@ const ProductList = () => {
         console.log(`${key}: ${value}`);
       }
   
-      const { data } = await createProduct(productData).unwrap();
+      const {data}  = await createProduct(productData).unwrap();
       console.log("Response:", data);
   
       if (data?.error) {
         toast.error("Product creation failed. Try again.");
       } else {
-        toast.success(`${data?.name} is created`);
+        toast.success(`"${data?.name || "Product"}" is created`);
         navigate("/");
       }
     } catch (error: any) {
@@ -178,7 +179,7 @@ const ProductList = () => {
                   <option value="" disabled>
                     Choose Category
                   </option>
-                  {categories?.map((c) => (
+                  {categories?.map((c: Category) => (
                     <option key={c._id} value={c._id}>
                       {c.name}
                     </option>
