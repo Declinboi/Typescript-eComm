@@ -24,7 +24,7 @@ const ProductTabs = ({
     return <Loader className="h-8 w-8 animate-spin text-emerald-800" />;
   }
 
-  const handleTabClick = (tabNumber) => {
+  const handleTabClick = (tabNumber:any) => {
     setActiveTab(tabNumber);
   };
 
@@ -121,7 +121,7 @@ const ProductTabs = ({
             <div>{product.reviews.length === 0 && <p>No Reviews</p>}</div>
 
             <div>
-              {product.reviews.map((review) => (
+              {product.reviews.map((review:any) => (
                 <div
                   key={review._id}
                   className="bg-[#1A1A1A] p-4 rounded-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
