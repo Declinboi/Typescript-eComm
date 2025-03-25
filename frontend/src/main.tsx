@@ -16,7 +16,8 @@ import CategoryList from "./pages/Admin/CategoryList.tsx";
 import ProductList from "./pages/Admin/ProductList.tsx";
 import ProductUpdate from "./pages/Admin/ProductUpdate.tsx";
 import AllProducts from "./pages/Admin/AllProducts.tsx";
-
+import FavouritePage from "./pages/Products/FavoritePage.tsx";
+import ProductDetails from "./pages/Products/ProductDetails.tsx";
 
 function AppRouter() {
   const router = createBrowserRouter([
@@ -28,6 +29,15 @@ function AppRouter() {
           index: true,
           element: <Home />,
         },
+        {
+          path: "/favorite",
+          element: <FavouritePage />,
+        },
+        {
+          path: "/product-details/:id",
+          element: <ProductDetails />,
+        },
+
         {
           element: <PrivateRoute />,
           children: [

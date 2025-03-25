@@ -4,39 +4,41 @@ import { useSelector, useDispatch } from "react-redux";
 import { Product } from "../Admin/AllProducts";
 
 
-// import {
-//   addToFavorites,
-//   removeFromFavorites,
-//   setFavorites,
-// } from "../../redux/features/favorites/favoriteSlice";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  setFavorites,
+} from "../../redux/features/favoriteSlice";
 
-// import {
-//   addFavoriteToLocalStorage,
-//   getFavoritesFromLocalStorage,
-//   removeFavoriteFromLocalStorage,
-// } from "../../Utils/localStorage";
+import {
+  addFavoriteToLocalStorage,
+  getFavoritesFromLocalStorage,
+  removeFavoriteFromLocalStorage,
+} from "../../Utils/localStorage";
 
-const HeartIcon : React.FC<{product:Product} >= ({ product }) => {
-//   const dispatch = useDispatch();
-//   const favorites = useSelector((state) => state.favorites) || [];
-//   const isFavorite = favorites.some((p) => p._id === product._id);
+const HeartIcon : React.FC<{product:Product}> = ({ product }) => {
+  const dispatch = useDispatch();
+  const favorites = useSelector((state: { favorites: Product[] }) => state.favorites) || [];
 
-//   useEffect(() => {
-//     const favoritesFromLocalStorage = getFavoritesFromLocalStorage();
-//     dispatch(setFavorites(favoritesFromLocalStorage));
-//   }, []);
 
-//   const toggleFavorites = () => {
-//     if (isFavorite) {
-//       dispatch(removeFromFavorites(product));
-//       // remove the product from the localStorage as well
-//       removeFavoriteFromLocalStorage(product._id);
-//     } else {
-//       dispatch(addToFavorites(product));
-//       // add the product to localStorage as well
-//       addFavoriteToLocalStorage(product);
-//     }
-//   };
+  const isFavorite = favorites.some((p) => p._id === product._id);
+
+  useEffect(() => {
+    const favoritesFromLocalStorage = getFavoritesFromLocalStorage();
+    dispatch(setFavorites(favoritesFromLocalStorage));
+  }, [dispatch]);
+
+  const toggleFavorites = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(product._id));
+      // remove the product from the localStorage as well
+      removeFavoriteFromLocalStorage(product._id);
+    } else {
+      dispatch(addToFavorites(product));
+      // add the product to localStorage as well
+      addFavoriteToLocalStorage(product);
+    }
+  };
 
   return (
     <div

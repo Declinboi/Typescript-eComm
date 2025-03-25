@@ -2,12 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 import { apiSlice } from "./api/apiSlice";
 import authReducer from "./features/auth/authSlice";
-import favoritesReducer from "./features/favouriteSlice";
+import favoritesReducer from "./features/favoriteSlice";
 // import cartSliceReducer from "../redux/features/cart/cartSlice";
 // import shopReducer from "../redux/features/shop/shopSlice";
-// import { getFavoritesFromLocalStorage } from "../Utils/localStorage";
+import { getFavoritesFromLocalStorage } from "../Utils/localStorage";
 
-// const initialFavorites = getFavoritesFromLocalStorage() || [];
+const initialFavorites = getFavoritesFromLocalStorage() || [];
 
 const store = configureStore({
   reducer: {
@@ -18,9 +18,9 @@ const store = configureStore({
     // shop: shopReducer,
   },
 
-//   preloadedState: {
-//     favorites: initialFavorites,
-//   },
+  preloadedState: {
+    favorites: initialFavorites,
+  },
 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
