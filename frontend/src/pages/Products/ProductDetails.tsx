@@ -12,7 +12,7 @@ import moment from "moment";
 import HeartIcon from "./HeartIcon";
 import { RootState } from "../../redux/store";
 import Ratings from "./Ratings";
-// import ProductTabs from "./ProductTabs";
+import ProductTabs from "./ProductTabs";
 // import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const ProductDetails = () => {
@@ -49,7 +49,7 @@ const ProductDetails = () => {
       toast.success("Review created successfully");
     } catch (error: any) {
       toast.error(
-        error?.data?.message || error.message || "Something went wrong"
+        error?.data || error.message || "Something went wrong"
       );
     }
   };
@@ -163,7 +163,7 @@ const ProductDetails = () => {
             </div>
 
             <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
-              {/* <ProductTabs
+              <ProductTabs
                 loadingProductReview={loadingProductReview}
                 userInfo={userInfo}
                 submitHandler={submitHandler}
@@ -172,7 +172,7 @@ const ProductDetails = () => {
                 comment={comment}
                 setComment={setComment}
                 product={product}
-              /> */}
+              />
             </div>
           </div>
         </>

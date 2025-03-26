@@ -17,7 +17,7 @@ import {
 } from "../controllers/productControllers";
 import { authenticate, authorizeAdmin } from "../middlewares/authHandler";
 import checkId from "../middlewares/checkId";
-import { upload } from "./uploadRoutes";
+
 
 router
   .route("/")

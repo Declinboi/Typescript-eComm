@@ -4,7 +4,7 @@ import Ratings from "./Ratings";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import SmallProduct from "./SmallProduct";
 import { Loader } from "lucide-react";
-// import Loader from "../../components/Loader";
+import { Product } from "../Admin/AllProducts";
 
 const ProductTabs = ({
   loadingProductReview,
@@ -15,16 +15,20 @@ const ProductTabs = ({
   comment,
   setComment,
   product,
-}:any ) => {
+}: any) => {
   const { data, isLoading } = useGetTopProductsQuery();
 
   const [activeTab, setActiveTab] = useState(1);
 
   if (isLoading) {
-    return <Loader className="h-8 w-8 animate-spin text-emerald-800" />;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader className="h-8 w-8 animate-spin text-emerald-800" />
+      </div>
+    );
   }
 
-  const handleTabClick = (tabNumber:any) => {
+  const handleTabClick = (tabNumber: any) => {
     setActiveTab(tabNumber);
   };
 
@@ -121,7 +125,7 @@ const ProductTabs = ({
             <div>{product.reviews.length === 0 && <p>No Reviews</p>}</div>
 
             <div>
-              {product.reviews.map((review:any) => (
+              {product.reviews.map((review: any) => (
                 <div
                   key={review._id}
                   className="bg-[#1A1A1A] p-4 rounded-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
@@ -146,9 +150,9 @@ const ProductTabs = ({
         {activeTab === 3 && (
           <section className="ml-[4rem] flex flex-wrap">
             {!data ? (
-              <Loader />
+              <Loader className="h-8 w-8 animate-spin text-emerald-800"/>
             ) : (
-              data.map((product) => (
+              data.map((product:Product) => (
                 <div key={product._id}>
                   <SmallProduct product={product} />
                 </div>
