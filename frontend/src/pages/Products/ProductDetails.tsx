@@ -13,6 +13,7 @@ import HeartIcon from "./HeartIcon";
 import { RootState } from "../../redux/store";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
+import { addToCart } from "../../redux/features/cartSlice";
 // import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const ProductDetails = () => {
@@ -48,16 +49,14 @@ const ProductDetails = () => {
       refetch();
       toast.success("Review created successfully");
     } catch (error: any) {
-      toast.error(
-        error?.data || error.message || "Something went wrong"
-      );
+      toast.error(error?.data || error.message || "Something went wrong");
     }
   };
 
-  //   const addToCartHandler = () => {
-  //     dispatch(addToCart({ ...product, qty }));
-  //     navigate("/cart");
-  //   };
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty }));
+    navigate("/cart");
+  };
 
   return (
     <>
@@ -135,25 +134,35 @@ const ProductDetails = () => {
                 />
 
                 {product.countInStock > 0 && (
-                  <div>
-                    <select
-                      value={qty}
-                      onChange={(e) => setQty(Number(e.target.value))}
-                      className="p-2 w-[6rem] rounded-lg text-black"
+                  <div className="flex items-center space-x-3">
+                    <button
+                      onClick={() => setQty((prev) => Math.max(1, prev - 1))}
+                      className="p-2 bg-gray-300 rounded-full text-black"
+                      disabled={qty <= 1}
                     >
-                      {[...Array(product.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </select>
+                      -
+                    </button>
+
+                    <span className="text-lg font-semibold">{qty}</span>
+
+                    <button
+                      onClick={() =>
+                        setQty((prev) =>
+                          Math.min(product.countInStock, prev + 1)
+                        )
+                      }
+                      className="p-2 bg-gray-300 rounded-full text-black"
+                      disabled={qty >= product.countInStock}
+                    >
+                      +
+                    </button>
                   </div>
                 )}
               </div>
 
               <div className="btn-container">
                 <button
-                  //   onClick={addToCartHandler}
+                  onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
                   className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
                 >

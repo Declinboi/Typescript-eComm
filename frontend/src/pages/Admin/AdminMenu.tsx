@@ -18,10 +18,10 @@ const AdminMenu = () => {
         onClick={toggleMenu}
       >
         {isMenuOpen ? (
-          <X color="white" />
+          <X className="w-6 h-0.5 bg-gray-200 my-1" />
         ) : (
           <>
-          <MenuIcon className="w-6 h-0.5 bg-gray-200 my-1" />
+            <MenuIcon className="w-6 h-0.5 bg-gray-200 my-1" />
           </>
         )}
       </button>

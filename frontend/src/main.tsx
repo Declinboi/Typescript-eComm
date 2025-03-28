@@ -18,6 +18,7 @@ import ProductUpdate from "./pages/Admin/ProductUpdate.tsx";
 import AllProducts from "./pages/Admin/AllProducts.tsx";
 import FavouritePage from "./pages/Products/FavoritePage.tsx";
 import ProductDetails from "./pages/Products/ProductDetails.tsx";
+import Cart from "./pages/Cart.tsx";
 
 function AppRouter() {
   const router = createBrowserRouter([
@@ -37,7 +38,10 @@ function AppRouter() {
           path: "/product-details/:id",
           element: <ProductDetails />,
         },
-
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
         {
           element: <PrivateRoute />,
           children: [

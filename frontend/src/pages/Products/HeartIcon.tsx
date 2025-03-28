@@ -15,10 +15,11 @@ import {
   getFavoritesFromLocalStorage,
   removeFavoriteFromLocalStorage,
 } from "../../Utils/localStorage";
+import { RootState } from "../../redux/store";
 
 const HeartIcon : React.FC<{product:Product}> = ({ product }) => {
   const dispatch = useDispatch();
-  const favorites = useSelector((state: { favorites: Product[] }) => state.favorites) || [];
+  const favorites = useSelector((state: RootState) => state.favorites);
 
 
   const isFavorite = favorites.some((p) => p._id === product._id);
