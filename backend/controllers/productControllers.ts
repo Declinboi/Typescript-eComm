@@ -4,52 +4,87 @@ import Product from "../models/productModels";
 import { AuthenticatedRequest } from "../middlewares/authHandler"; // Ensure this includes `user`
 import mongoose from "mongoose";
 
-const addProduct = asyncHandler(
-  async (req: Request, res: Response): Promise<void> => {
-    try {
-      const {
-        name,
-        description,
-        price,
-        category,
-        quantity,
-        brand,
-        countInStock,
-      } = req.body as {
-        name?: string;
-        description?: string;
-        price?: string | number;
-        category?: string;
-        quantity?: string | number;
-        brand?: string;
-        countInStock?: string | number;
-      };
+// const addProduct = asyncHandler(
+//   async (req: Request, res: Response): Promise<void> => {
+//     try {
+//       const {
+//         name,
+//         description,
+//         price,
+//         category,
+//         quantity,
+//         brand,
+//         countInStock,
+//       } = req.body as {
+//         name?: string;
+//         description?: string;
+//         price?: string;
+//         category?: string;
+//         quantity?: string;
+//         brand?: string;
+//         countInStock?: string;
+//       };
 
-      // Get image file path from Multer
-      const image = req.file ? `/uploads/${req.file.filename}` : "";
+//       // Get image file path from Multer
+//       const image = req.file ? `/uploads/${req.file.filename}` : "";
 
-      // Create a new product, converting numeric fields and category as needed.
-      const newProduct = new Product({
-        name,
-        description,
-        price: Number(price),
-        category,
-        quantity: Number(quantity),
-        brand,
-        countInStock: Number(countInStock), // Convert if necessary
-        image,
-      });
+//       // Create a new product, converting numeric fields and category as needed.
+//       const newProduct = new Product({
+//         name,
+//         description,
+//         price, //Number(price),
+//         category,
+//         quantity,// Number(quantity),
+//         brand,
+//         countInStock, //Number(countInStock), // Convert if necessary
+//         image,
+//       });
 
-      const savedProduct = await newProduct.save();
-      console.log("Product saved:", savedProduct);
+//       const savedProduct = await newProduct.save();
+//       console.log("Product saved:", savedProduct);
 
-      res.status(201).json(savedProduct.toObject());
-    } catch (error) {
-      console.error(error);
-      res.status(400).json({ error: (error as Error).message });
+//       res.status(201).json(savedProduct.toObject());
+//     } catch (error) {
+//       console.error(error);
+//       res.status(400).json({ error: (error as Error).message });
+//     }
+//   }
+// );
+
+
+const addProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, description, price, category, quantity, brand, countInStock } = req.body;
+
+    // Validate required fields before proceeding
+    if (!name || !description || !price || !category || !quantity || !brand || !countInStock) {
+      res.status(400).json({ error: "All fields are required." });
+      return 
     }
+
+    const image = req.file ? `/uploads/${req.file.filename}` : "";
+
+    const newProduct = new Product({
+      name,
+      description,
+      price: Number(price),  // Convert to number if necessary
+      category,
+      quantity: Number(quantity),
+      brand,
+      countInStock: Number(countInStock),
+      image,
+    });
+
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: (error as Error).message });
   }
-);
+});
+
+
+
 
 const updateProductDetails = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
@@ -65,11 +100,11 @@ const updateProductDetails = asyncHandler(
       } = req.body as {
         name?: string;
         description?: string;
-        price?: string | number;
+        price?: string;
         category?: string;
-        quantity?: string | number;
+        quantity?: string;
         brand?: string;
-        countInStock?: string | number;
+        countInStock?: string;
       };
 
       // Get image file path from Multer

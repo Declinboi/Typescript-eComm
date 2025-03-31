@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   useCreateProductMutation,
@@ -28,7 +28,7 @@ const ProductList = () => {
   const { data: categories } = useFetchCategoriesQuery();
 
   // Handle form submission
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
   
     try {
@@ -52,7 +52,7 @@ const ProductList = () => {
       if (data?.error) {
         toast.error("Product creation failed. Try again.");
       } else {
-        toast.success(`"${data?.name || "Product"}" is created`);
+        toast.success("Product is created");
         navigate("/");
       }
     } catch (error: any) {
@@ -107,12 +107,12 @@ const ProductList = () => {
                 name="image"
                 accept="image/*"
                 onChange={uploadFileHandler}
-                className={!image ? "hidden" : "text-white"}
+                className= "text-white"
               />
             </label>
           </div>
 
-          <form className="p-3" onSubmit={handleSubmit}>
+          <div className="p-3" >
             <div className="flex flex-wrap">
               <div className="one">
                 <label htmlFor="name">Name</label> <br />
@@ -190,11 +190,12 @@ const ProductList = () => {
 
             <button
               type="submit"
+              onClick={handleSubmit}
               className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600"
             >
               Submit
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
