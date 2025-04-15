@@ -1,4 +1,10 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import {
+  useState,
+  useEffect,
+  ChangeEvent,
+  FormEvent,
+  MouseEventHandler,
+} from "react";
 import AdminMenu from "./AdminMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -72,7 +78,7 @@ const ProductUpdate = () => {
     }
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -154,7 +160,7 @@ const ProductUpdate = () => {
               </label>
             </div>
 
-            <form className="p-3" onSubmit={handleSubmit}>
+            <div className="p-3">
               <div className="flex flex-wrap">
                 <div className="one">
                   <label htmlFor="name">Name</label> <br />
@@ -231,7 +237,10 @@ const ProductUpdate = () => {
               </div>
 
               <div className="">
-                <button className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6">
+                <button
+                  onClick={handleSubmit}
+                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6"
+                >
                   Update
                 </button>
                 <button
@@ -241,7 +250,7 @@ const ProductUpdate = () => {
                   Delete
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ const Home = () => {
     <>
       {!keyword ? <Header /> : null}
       {isLoading ? (
-        <Loader />
+        <Loader className="h-8 w-8 animate-spin text-emerald-800" />
       ) : error ? (
         <Message variant="error">
           {(error as { data?: { message?: string }; error?: string })?.data

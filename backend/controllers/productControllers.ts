@@ -56,22 +56,48 @@ const addProduct = asyncHandler(async (req: Request, res: Response): Promise<voi
   try {
     const { name, description, price, category, quantity, brand, countInStock } = req.body;
 
-    // Validate required fields before proceeding
-    if (!name || !description || !price || !category || !quantity || !brand || !countInStock) {
-      res.status(400).json({ error: "All fields are required." });
-      return 
-    }
+    // // Validate required fields before proceeding
+    // if (!name ) {
+    //   res.status(400).json({ error: "name are required." });
+    //   return 
+    // }
+    // if (!description ) {
+    //   res.status(400).json({ error: "description are required." });
+    //   return 
+    // }
+    // if (!price ) {
+    //   res.status(400).json({ error: "price are required." });
+    //   return 
+    // }
+    // if (!category) {
+    //   res.status(400).json({ error: "category are required." });
+    //   return 
+    // }
+    // if (!quantity) {
+    //   res.status(400).json({ error: "quantity are required." });
+    //   return 
+    // }
+    // if (!brand) {
+    //   res.status(400).json({ error: "brand are required." });
+    //   return 
+    // }
+    // if (!countInStock) {
+    //   res.status(400).json({ error: "countInStock are required." });
+    //   return 
+    // }
+
+
 
     const image = req.file ? `/uploads/${req.file.filename}` : "";
 
     const newProduct = new Product({
       name,
       description,
-      price: Number(price),  // Convert to number if necessary
+      price, //Number(price),  // Convert to number if necessary
       category,
-      quantity: Number(quantity),
+      quantity,// Number(quantity),
       brand,
-      countInStock: Number(countInStock),
+      countInStock,// Number(countInStock),
       image,
     });
 

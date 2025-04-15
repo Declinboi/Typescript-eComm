@@ -7,7 +7,8 @@ import userRoutes from "../routes/userRoutes";
 import categoryRoutes from "../routes/categoryRoutes";
 import productRoutes from "../routes/productRoutes";
 import uploadRoutes from "../routes/uploadRoutes";
-import cors from "cors"
+import orderRoutes from "../routes/orderRoutes";
+import cors from "cors";
 
 const PORT = process.env.PORT || 5000;
 
@@ -24,11 +25,14 @@ app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/upload", uploadRoutes);
+app.use("/api/orders", orderRoutes);
 
-
+app.get("/api/config/paypal", (_req, res) => {
+  res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
+});
 
 app.use("/uploads", express.static(path.resolve("uploads")));
 
-app.listen(PORT,  () => {
+app.listen(PORT, () => {
   console.log("server is listen on port:", PORT);
 });
