@@ -50,62 +50,43 @@ import mongoose from "mongoose";
 //     }
 //   }
 // );
-
-
-const addProduct = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+const addProduct = asyncHandler(async (req:any, res:any) => {
   try {
-    const { name, description, price, category, quantity, brand, countInStock } = req.body;
+    const { name, description, price, category, quantity, brand } = req.body;
 
-    // // Validate required fields before proceeding
-    // if (!name ) {
-    //   res.status(400).json({ error: "name are required." });
-    //   return 
-    // }
-    // if (!description ) {
-    //   res.status(400).json({ error: "description are required." });
-    //   return 
-    // }
-    // if (!price ) {
-    //   res.status(400).json({ error: "price are required." });
-    //   return 
-    // }
-    // if (!category) {
-    //   res.status(400).json({ error: "category are required." });
-    //   return 
-    // }
-    // if (!quantity) {
-    //   res.status(400).json({ error: "quantity are required." });
-    //   return 
-    // }
-    // if (!brand) {
-    //   res.status(400).json({ error: "brand are required." });
-    //   return 
-    // }
-    // if (!countInStock) {
-    //   res.status(400).json({ error: "countInStock are required." });
-    //   return 
-    // }
+    // Validation
+    switch (true) {
+      case !name:
+        return res.status(400).json({ error: "Name is required" });
+      case !brand:
+        return res.status(400).json({ error: "Brand is required" });
+      case !description:
+        return res.status(400).json({ error: "Description is required" });
+      case !price:
+        return res.status(400).json({ error: "Price is required" });
+      case !category:
+        return res.status(400).json({ error: "Category is required" });
+      case !quantity:
+        return res.status(400).json({ error: "Quantity is required" });
+      // case !image:
+      //   return res.status(400).json({ error: "Image is required" });
+    }
 
-
-
-    const image = req.file ? `/uploads/${req.file.filename}` : "";
-
-    const newProduct = new Product({
+    const product = new Product({
       name,
       description,
-      price, //Number(price),  // Convert to number if necessary
+      price,
       category,
-      quantity,// Number(quantity),
+      quantity,
       brand,
-      countInStock,// Number(countInStock),
-      image,
+    
     });
 
-    const savedProduct = await newProduct.save();
-    res.status(201).json(savedProduct);
-  } catch (error) {
+    await product.save();
+    res.status(201).json(product);
+  } catch (error: any) {
     console.error(error);
-    res.status(400).json({ error: (error as Error).message });
+    res.status(500).json({ error: error.message });
   }
 });
 

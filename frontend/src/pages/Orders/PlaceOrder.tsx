@@ -12,7 +12,7 @@ import { Loader } from "lucide-react";
 const PlaceOrder = () => {
   const navigate = useNavigate();
 
-  const cart = useSelector((state:RootState) => state.cart);
+  const cart = useSelector((state: RootState) => state.cart);
 
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
@@ -36,8 +36,8 @@ const PlaceOrder = () => {
         totalPrice: cart.totalPrice,
       }).unwrap();
       dispatch(clearCartItems());
-      navigate(`/order/${res?.id}`);
-    } catch (error:any) {
+      navigate(`/order/${res._id}`);
+    } catch (error: any) {
       toast.error(error);
     }
   };
@@ -63,7 +63,7 @@ const PlaceOrder = () => {
               </thead>
 
               <tbody>
-                {cart.cartItems.map((item:any, index:any) => (
+                {cart.cartItems.map((item: any, index: any) => (
                   <tr key={index}>
                     <td className="p-2">
                       <img
@@ -74,7 +74,9 @@ const PlaceOrder = () => {
                     </td>
 
                     <td className="p-2">
-                      <Link to={`/productupdate/${item.product}`}>{item.name}</Link>
+                      <Link to={`/productupdate/${item.product}`}>
+                        {item.name}
+                      </Link>
                     </td>
                     <td className="p-2">{item.qty}</td>
                     <td className="p-2">{item.price.toFixed(2)}</td>
@@ -110,8 +112,12 @@ const PlaceOrder = () => {
               </li>
             </ul>
 
-            {error && <Message variant="error">{(error as { data?: { message?: string }; error?: string })?.data
-            ?.message || (error as { error?: string })?.error}</Message>}
+            {error && (
+              <Message variant="error">
+                {(error as { data?: { message?: string }; error?: string })
+                  ?.data?.message || (error as { error?: string })?.error}
+              </Message>
+            )}
 
             <div>
               <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
@@ -137,7 +143,9 @@ const PlaceOrder = () => {
             Place Order
           </button>
 
-          {isLoading && <Loader className="h-4 w-4 animate-spin text-emerald-800" />}
+          {isLoading && (
+            <Loader className="h-4 w-4 animate-spin text-emerald-800" />
+          )}
         </div>
       </div>
     </>
