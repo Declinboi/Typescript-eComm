@@ -11,7 +11,7 @@ import Input from "../../components/Input";
 import { Category } from "./CategoryList";
 
 const ProductList = () => {
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<any>(null);
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("");
@@ -19,7 +19,7 @@ const ProductList = () => {
   const [quantity, setQuantity] = useState<string>("");
   const [brand, setBrand] = useState<string>("");
   const [stock, setStock] = useState<number>(0);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<any>(null);
 
   const navigate = useNavigate();
 
@@ -43,14 +43,15 @@ const ProductList = () => {
       productData.append("countInStock", stock.toString());
 
       for (const [key, value] of productData.entries()) {
-        console.log(`${key}: ${value}`);
+        console.log(`${key}:`, value);
       }
-
+      
+      
       const { data } = await createProduct(productData).unwrap();
       if (data?.error) {
         toast.error("Product creation failed. Try again.");
       } else {
-        toast.success(`${data?.name} is created`);
+        toast.success(`${data?.name}  is created`);
         navigate("/");
       }
     } catch (error: any) {
@@ -58,6 +59,8 @@ const ProductList = () => {
       toast.error("Product creation failed. Try again.");
     }
   };
+
+
 
   // Handle image upload
   const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {

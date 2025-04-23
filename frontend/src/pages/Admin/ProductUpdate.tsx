@@ -78,7 +78,7 @@ const ProductUpdate = () => {
     }
   };
 
-  const handleSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -104,7 +104,7 @@ const ProductUpdate = () => {
         toast.error("Product update failed. Try again.");
       } else {
         toast.success("Product successfully updated");
-        navigate("/allproductslist");
+        navigate("/productlist");
       }
     } catch (err) {
       console.log(err);
@@ -121,7 +121,7 @@ const ProductUpdate = () => {
 
       const { data } = await deleteProduct(params._id).unwrap();
       toast.success(`"${data?.name}" is deleted`);
-      navigate("/allproductslist");
+      navigate("/productlist");
     } catch (err) {
       console.log(err);
       toast.error("Delete failed. Try again.");

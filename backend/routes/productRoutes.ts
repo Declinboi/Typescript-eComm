@@ -16,12 +16,13 @@ import {
 } from "../controllers/productControllers";
 import { authenticate, authorizeAdmin } from "../middlewares/authHandler";
 import checkId from "../middlewares/checkId";
+import { upload } from "./uploadRoutes";
 
 
 router
   .route("/")
   .get(fetchProducts)
-  .post(authenticate, authorizeAdmin, addProduct);
+  .post(authenticate, authorizeAdmin,upload.single("image"), addProduct);
   
 
 router.route("/allproducts").get(fetchAllProducts);
@@ -33,7 +34,7 @@ router.get("/new", fetchNewProducts);
 router
   .route("/:id")
   .get(fetchProductById)
-  .put(authenticate, authorizeAdmin, updateProductDetails)
+  .put(authenticate, authorizeAdmin,upload.single("image"), updateProductDetails)
   .delete(authenticate, authorizeAdmin, removeProduct);
 
 router.route("/filtered-products").post(filterProducts);

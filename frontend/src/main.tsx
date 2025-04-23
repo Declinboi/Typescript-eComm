@@ -74,7 +74,7 @@ function AppRouter() {
 
             { path: "/userlist", element: <UserList /> },
             { path: "/categorylist", element: <CategoryList /> },
-            { path: "/productlist/:pageNumber", element: <ProductList /> },
+            { path: "/productlist", element: <ProductList /> },
             { path: "/productupdate/:_id", element: <ProductUpdate /> },
             { path: "/allproducts", element: <AllProducts /> },
             { path: "/orderlist", element: <OrderList /> },

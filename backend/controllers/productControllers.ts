@@ -4,91 +4,45 @@ import Product from "../models/productModels";
 import { AuthenticatedRequest } from "../middlewares/authHandler"; // Ensure this includes `user`
 import mongoose from "mongoose";
 
-// const addProduct = asyncHandler(
-//   async (req: Request, res: Response): Promise<void> => {
-//     try {
-//       const {
-//         name,
-//         description,
-//         price,
-//         category,
-//         quantity,
-//         brand,
-//         countInStock,
-//       } = req.body as {
-//         name?: string;
-//         description?: string;
-//         price?: string;
-//         category?: string;
-//         quantity?: string;
-//         brand?: string;
-//         countInStock?: string;
-//       };
+const addProduct = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
 
-//       // Get image file path from Multer
-//       const image = req.file ? `/uploads/${req.file.filename}` : "";
+    try {
+      const {
+        name,
+        description,
+        price,
+        category,
+        quantity,
+        brand,
+        countInStock,
+      } = req.body 
 
-//       // Create a new product, converting numeric fields and category as needed.
-//       const newProduct = new Product({
-//         name,
-//         description,
-//         price, //Number(price),
-//         category,
-//         quantity,// Number(quantity),
-//         brand,
-//         countInStock, //Number(countInStock), // Convert if necessary
-//         image,
-//       });
+      // Get image file path from Multer
+      const image = req.file ? `/uploads/${req.file.filename}` : "";
 
-//       const savedProduct = await newProduct.save();
-//       console.log("Product saved:", savedProduct);
+      // Create a new product, converting numeric fields and category as needed.
+      const newProduct = new Product({
+        name,
+        description,
+        price, //Number(price),
+        category,
+        quantity,// Number(quantity),
+        brand,
+        countInStock, //Number(countInStock), // Convert if necessary
+        image,
+      });
 
-//       res.status(201).json(savedProduct.toObject());
-//     } catch (error) {
-//       console.error(error);
-//       res.status(400).json({ error: (error as Error).message });
-//     }
-//   }
-// );
-const addProduct = asyncHandler(async (req:any, res:any) => {
-  try {
-    const { name, description, price, category, quantity, brand } = req.body;
+      const savedProduct = await newProduct.save();
+      console.log("Product saved:", savedProduct);
 
-    // Validation
-    switch (true) {
-      case !name:
-        return res.status(400).json({ error: "Name is required" });
-      case !brand:
-        return res.status(400).json({ error: "Brand is required" });
-      case !description:
-        return res.status(400).json({ error: "Description is required" });
-      case !price:
-        return res.status(400).json({ error: "Price is required" });
-      case !category:
-        return res.status(400).json({ error: "Category is required" });
-      case !quantity:
-        return res.status(400).json({ error: "Quantity is required" });
-      // case !image:
-      //   return res.status(400).json({ error: "Image is required" });
+      res.status(201).json(savedProduct.toObject());
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ error: (error as Error).message });
     }
-
-    const product = new Product({
-      name,
-      description,
-      price,
-      category,
-      quantity,
-      brand,
-    
-    });
-
-    await product.save();
-    res.status(201).json(product);
-  } catch (error: any) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
   }
-});
+);
 
 
 
@@ -104,16 +58,7 @@ const updateProductDetails = asyncHandler(
         quantity,
         brand,
         countInStock,
-      } = req.body as {
-        name?: string;
-        description?: string;
-        price?: string;
-        category?: string;
-        quantity?: string;
-        brand?: string;
-        countInStock?: string;
-      };
-
+      } = req.body 
       // Get image file path from Multer
       const image = req.file ? `/uploads/${req.file.filename}` : "";
 
@@ -122,11 +67,11 @@ const updateProductDetails = asyncHandler(
         {
           name,
           description,
-          price: Number(price),
+          price,
           category,
-          quantity: Number(quantity),
+          quantity,
           brand,
-          countInStock: Number(countInStock), // Convert if necessary
+          countInStock, // Convert if necessary
           image,
         },
         { new: true }
