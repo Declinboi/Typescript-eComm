@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   useCreateProductMutation,
@@ -51,7 +51,7 @@ const ProductList = () => {
       if (data?.error) {
         toast.error("Product creation failed. Try again.");
       } else {
-        toast.success(`${data?.name}  is created`);
+        toast.success(` Product is created`);
         navigate("/");
       }
     } catch (error: any) {
@@ -153,11 +153,11 @@ const ProductList = () => {
               <label htmlFor="" className="my-5">
                 Description
               </label>
-              <Input
-                type="text"
+              <textarea
+            className="p-2 mb-3 bg-[#101011]  border rounded-lg w-[95%] text-white"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-              ></Input>
+              ></textarea>
 
               <div className="flex justify-between">
                 <div>

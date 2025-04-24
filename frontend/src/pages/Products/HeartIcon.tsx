@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Heart, HeartCrack } from "lucide-react";
+import { Heart} from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { Product } from "../Admin/AllProducts";
 
@@ -49,7 +49,7 @@ const HeartIcon : React.FC<{product:Product}> = ({ product }) => {
       {isFavorite ? (
         <Heart className="text-pink-500" />
       ) : (
-        <HeartCrack className="text-white" />
+        <Heart className="text-white" />
       )}
     </div>
   );

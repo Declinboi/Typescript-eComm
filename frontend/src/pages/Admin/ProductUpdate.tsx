@@ -25,6 +25,7 @@ const ProductUpdate = () => {
   console.log(productData);
 
   const [image, setImage] = useState(productData?.image || "");
+  const [imageUrl, setImageUrl] = useState(productData?.imageUrl || "");
   const [name, setName] = useState(productData?.name || "");
   const [description, setDescription] = useState(
     productData?.description || ""
@@ -57,7 +58,8 @@ const ProductUpdate = () => {
       setCategory(productData.category?._id);
       setQuantity(productData.quantity);
       setBrand(productData.brand);
-      setImage(productData.image);
+      setImage(productData?.image);
+      setImageUrl(productData?.imageUrl);
     }
   }, [productData]);
 
@@ -73,6 +75,7 @@ const ProductUpdate = () => {
       console.log("Upload Response:", res);
       toast.success("Image added successfully");
       setImage(file);
+      setImageUrl(res.image);
     } catch (err) {
       toast.error("Image upload failed");
     }
@@ -120,7 +123,8 @@ const ProductUpdate = () => {
       if (!answer) return;
 
       const { data } = await deleteProduct(params._id).unwrap();
-      toast.success(`"${data?.name}" is deleted`);
+      console.log(data)
+      toast.success("Product is deleted");
       navigate("/productlist");
     } catch (err) {
       console.log(err);
@@ -136,7 +140,17 @@ const ProductUpdate = () => {
           <div className="md:w-3/4 p-3">
             <div className="h-12 font-bold">Update / Delete Product</div>
 
-            {image && (
+            {imageUrl && (
+            <div className="text-center">
+              <img
+                src={imageUrl}
+                alt="product"
+                className="block mx-auto max-h-[200px]"
+              />
+            </div>
+          )}
+
+            {/* {image && (
               <div className="text-center">
                 <img
                   src={image}
@@ -144,7 +158,7 @@ const ProductUpdate = () => {
                   className="block mx-auto max-h-[200px]"
                 />
               </div>
-            )}
+            )} */}
 
             <div className="mb-3">
               <label className="border border-emerald-950 text-black px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11 ">
