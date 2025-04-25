@@ -30,8 +30,13 @@ app.use("/api/orders", orderRoutes);
 app.get("/api/config/paypal", (_req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
-
 app.use("/uploads", express.static(path.resolve("uploads")));
+
+app.use(express.static(path.resolve(__dirname, "../frontend/build")));
+
+app.get("*", (_req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("server is listen on port:", PORT);
