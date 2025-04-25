@@ -23,7 +23,7 @@ const Navigation = () => {
   const { cartItems } = cart;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, _setShowSidebar] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);

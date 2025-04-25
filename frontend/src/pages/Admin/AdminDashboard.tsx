@@ -14,8 +14,8 @@ import { ApexOptions } from "apexcharts";
 
 const AdminDashboard = () => {
   const { data: sales, isLoading } = useGetTotalSalesQuery({});
-  const { data: customers, isLoading: loading } = useGetUsersQuery();
-  const { data: orders, isLoading: loadingTwo } = useGetTotalOrdersQuery({});
+  const { data: customers, isLoading: _loading } = useGetUsersQuery();
+  const { data: orders, isLoading: _loadingTwo } = useGetTotalOrdersQuery({});
   const { data: salesDetail } = useGetTotalSalesByDateQuery({});
 
   const [state, setState] = useState<{
