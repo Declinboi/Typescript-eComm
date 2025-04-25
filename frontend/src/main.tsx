@@ -22,7 +22,6 @@ import Cart from "./pages/Cart.tsx";
 import Shop from "./Shop.tsx";
 import Shipping from "./pages/Orders/Shipping.tsx";
 import PlaceOrder from "./pages/Orders/PlaceOrder.tsx";
-import OrderPage from "./pages/Orders/OrderPage.tsx";
 import UserOrders from "./pages/User/UserOrders.tsx";
 import OrderList from "./pages/Admin/OrderList.tsx";
 import AdminDashboard from "./pages/Admin/AdminDashboard.tsx";
