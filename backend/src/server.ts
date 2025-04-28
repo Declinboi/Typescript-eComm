@@ -12,14 +12,14 @@ import cors from "cors";
 
 const PORT = process.env.PORT || 5000;
 
-const app = express();
+const app = express() as any;
 
 connectDB();
-app.use(cors());
+app.use(cors()) as any;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser()) as any;
 
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
@@ -27,7 +27,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/orders", orderRoutes);
 
-app.get("/api/config/paypal", (_req, res) => {
+app.get("/api/config/paypal", (_req:any, res:any) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
 // app.use("/uploads", express.static(path.resolve("uploads")));
