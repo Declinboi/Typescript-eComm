@@ -37,7 +37,7 @@ export const authenticate = asyncHandler(
         | null;
 
       if (!user) {
-        res.status(401);
+        res.status(404);
         throw new Error("User not found.");
       }
 
