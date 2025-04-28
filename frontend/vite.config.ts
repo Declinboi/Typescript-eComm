@@ -7,8 +7,8 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      "/api/": "http://localhost:5000",
-      "/uploads": "http://localhost:5000",
+      "/api/": "https://typescript-ecomm-1.onrender.com",
+      "/uploads": "https://typescript-ecomm-1.onrender.com",
     },
   },
 });

@@ -12,14 +12,14 @@ import cors from "cors";
 
 const PORT = process.env.PORT || 5000;
 
-const app = express() as any;
+const app = express();
 
 connectDB();
-app.use(cors()) as any;
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()) as any;
+app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
