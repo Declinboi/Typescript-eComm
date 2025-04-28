@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 
 const addProduct = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-
     try {
       const {
         name,
@@ -16,20 +15,20 @@ const addProduct = asyncHandler(
         quantity,
         brand,
         countInStock,
-      } = req.body 
+      } = req.body;
 
       // Get image file path from Multer
-      const image = req.file ? `/uploads/${req.file.filename}` : "";
+      const image = req.file ? (req.file as any).path : "";
 
       // Create a new product, converting numeric fields and category as needed.
       const newProduct = new Product({
         name,
         description,
-        price, //Number(price),
+        price, 
         category,
-        quantity,// Number(quantity),
+        quantity, 
         brand,
-        countInStock, //Number(countInStock), // Convert if necessary
+        countInStock, 
         image,
       });
 
@@ -44,9 +43,6 @@ const addProduct = asyncHandler(
   }
 );
 
-
-
-
 const updateProductDetails = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     try {
@@ -58,9 +54,9 @@ const updateProductDetails = asyncHandler(
         quantity,
         brand,
         countInStock,
-      } = req.body 
+      } = req.body;
       // Get image file path from Multer
-      const image = req.file ? `/uploads/${req.file.filename}` : "";
+      const  image = req.file ? (req.file as any).path : "";
 
       const product = await Product.findByIdAndUpdate(
         req.params.id,
