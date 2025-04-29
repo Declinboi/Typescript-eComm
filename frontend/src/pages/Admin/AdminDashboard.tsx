@@ -29,7 +29,7 @@ const AdminDashboard = () => {
       tooltip: {
         theme: "dark",
       },
-      colors: ["#00E396"],
+      colors: ["#00FFB3"],
       dataLabels: {
         enabled: true,
       },
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
         align: "left",
       },
       grid: {
-        borderColor: "#ccc",
+        borderColor: "#00DFA2",
       },
       markers: {
         size: 1,

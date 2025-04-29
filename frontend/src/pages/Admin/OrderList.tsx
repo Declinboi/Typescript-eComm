@@ -10,17 +10,15 @@ const OrderList = () => {
   return (
     <>
       {isLoading ? (
-        <Loader className="h-4 w-4 animate-spin text-emerald-800"  />
+        <Loader className="h-4 w-4 animate-spin text-emerald-800" />
       ) : error ? (
         <Message variant="error">
-      {(error as { data?: { message?: string }; error?: string })?.data
-        ?.message || (error as { error?: string })?.error}
-    </Message>
+          {(error as { data?: { message?: string }; error?: string })?.data
+            ?.message || (error as { error?: string })?.error}
+        </Message>
       ) : (
-        <table className="container mx-auto px-4  ">
-          <AdminMenu />
-
-          <thead className="w-full rounded-md">
+        <table className="container mx-auto px-4 border-2 border-gray-300 shadow-lg ">
+          <thead className="w-full rounded-md border-2 border-gray-300">
             <tr className="mb-[5rem] text-green-500">
               <th className="text-left pl-1">ITEMS</th>
               <th className="text-left pl-1">ID</th>
@@ -33,14 +31,14 @@ const OrderList = () => {
             </tr>
           </thead>
 
-          <tbody>
-            {orders.map((order: any ) => (
+          <tbody className="text-sm">
+            {orders.map((order: any) => (
               <tr key={order._id}>
                 <td>
                   <img
                     src={order?.orderItems[0].image}
                     alt={order?._id}
-                    className="w-[5rem] pt-4"
+                    className="w-[5rem] pt-4 rounded-md"
                   />
                 </td>
                 <td>{order?._id}</td>
@@ -87,6 +85,7 @@ const OrderList = () => {
           </tbody>
         </table>
       )}
+      <AdminMenu />
     </>
   );
 };

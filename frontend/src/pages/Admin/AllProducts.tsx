@@ -50,7 +50,7 @@ const AllProducts = () => {
                   to={`/productupdate/${product._id}`}
                   className="block mt-2 mb-4 shadow-lg overflow-hidden"
                 >
-                  <div className="flex">
+                  <div className="flex rounded-lg">
                     <img
                       src={product.image}
                       alt={product.name}

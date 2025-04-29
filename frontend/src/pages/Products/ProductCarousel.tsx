@@ -32,7 +32,7 @@ const ProductCarousel = () => {
       ) : (
         <Slider
           {...settings}
-          className="xl:w-[40rem]  lg:w-[35rem] md:w-[30rem] sm:w-[25rem] sm:block bg-gray-400"
+          className="xl:w-[40rem]  lg:w-[35rem] md:w-[30rem] sm:w-[25rem] sm:block rounded-lg shadow-lg bg-gray-100"
         >
           {products?.map((products: Product) => (
             <div key={products._id}>
@@ -45,9 +45,9 @@ const ProductCarousel = () => {
               <div className="mt-4 flex justify-between">
                 <div className="ml-4 one">
                   <h2 className="font-bold">{products.name}</h2>
-                  <p className="mt-2 hover:bg-emerald-300 px-2 border-green-400 border-2 rounded-full"> $ {products.price}</p> <br /> 
+                  <p className="mt-2 text-green-500"> $ {products.price}</p> <br /> 
                   <p className=" w-[18rem]">
-                    {products?.description.substring(0, 170)} ...
+                    {products?.description.substring(0, 160)} ...
                   </p>
                 </div>
 

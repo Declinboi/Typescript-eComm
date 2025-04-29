@@ -5,7 +5,7 @@ import HeartIcon from "./HeartIcon";
 
 const SmallProduct: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <div className="w-[20rem] ml-[2rem] p-3">
+    <div className="w-[20rem] ml-[2rem] p-3 px-4 shadow-lg">
       <div className="relative">
         <img
           src={product?.image}
@@ -19,7 +19,7 @@ const SmallProduct: React.FC<{ product: Product }> = ({ product }) => {
         <Link to={`/product/${product._id}`}>
           <h2 className="flex justify-between items-center">
             <div>{product.name}</div>
-            <span className="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
+            <span className="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
               $ {product.price}
             </span>
           </h2>
