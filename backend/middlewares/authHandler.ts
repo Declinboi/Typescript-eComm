@@ -20,11 +20,13 @@ export interface AuthenticatedRequest extends Request {
 export const authenticate = asyncHandler(
   async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     let token = req.cookies?.jwt;
+    console.log("Cookies received:", req.cookies);
+console.log("JWT token:", req.cookies?.jwt);
 
-    // if (!token) {
-    //   res.status(401);
-    //   throw new Error("Not authorized, no token.");
-    // }
+    if (!token) {
+      res.status(401);
+      throw new Error("Not authorized, no token.");
+    }
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
