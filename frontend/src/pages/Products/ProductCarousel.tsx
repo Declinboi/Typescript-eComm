@@ -46,7 +46,7 @@ const ProductCarousel = () => {
                 <div className="ml-4 one">
                   <h2 className="font-bold">{products.name}</h2>
                   <p className="mt-2 text-green-500"> $ {products.price}</p> <br /> 
-                  <p className=" w-[18rem]">
+                  <p className=" text-sm w-[18rem]">
                     {products?.description.substring(0, 160)} ...
                   </p>
                 </div>
