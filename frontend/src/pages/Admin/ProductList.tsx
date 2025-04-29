@@ -86,7 +86,7 @@ const ProductList = () => {
       <div className="flex flex-col md:flex-row">
         <AdminMenu />
         <div className="md:w-3/4 p-3">
-          <div className="h-12">Create Product</div>
+          <div className=" font-bold text-4xl h-12">Create Product</div>
 
           {imageUrl && (
             <div className="text-center">
@@ -190,7 +190,7 @@ const ProductList = () => {
 
               <button
                 type="submit"
-                className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600"
+                className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-green-600"
               >
                 Submit
               </button>

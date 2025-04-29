@@ -126,7 +126,7 @@ const Navigation = () => {
 
         {dropdownOpen && userInfo && (
           <ul
-            className={`absolute left-14 mt-2 mr-14 space-y-2 rounded-lg bg-gray-400 text-green-600 ${
+            className={`absolute left-14 mt-2 mr-14 space-y-2 rounded-lg bg-white text-green-600 ${
               !userInfo.isAdmin ? "-top-20" : "-top-80"
             } `}
           >
@@ -135,7 +135,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin-dashboard"
-                    className="block px-4 py-2 hover:rounded-lg hover:bg-gray-100"
+                    className="block px-4 py-2 hover:rounded-lg  hover:bg-gray-100"
                   >
                     Dashboard
                   </Link>

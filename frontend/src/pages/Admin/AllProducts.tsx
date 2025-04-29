@@ -37,18 +37,18 @@ const AllProducts = () => {
   return (
     <>
       <div className="container mx-[9rem]">
-        <div className="flex flex-col  md:flex-row">
+        <div className="flex flex-col md:flex-row">
           <div className="p-3">
             <AdminMenu />
             <div className="ml-[2rem]  text-xl font-bold h-12">
               All Products ({products?.length})
             </div>
-            <div className="flex flex-wrap justify-around items-center">
+            <div className="flex flex-wrap mt-4 justify-around shadow-lg border-2 border-t-green-400 items-center">
               {products?.map((product: Product) => (
                 <Link
                   key={product._id}
                   to={`/productupdate/${product._id}`}
-                  className="block mb-4 overflow-hidden"
+                  className="block  mb-4 shadow-lg overflow-hidden"
                 >
                   <div className="flex">
                     <img
@@ -74,7 +74,7 @@ const AllProducts = () => {
                       <div className="flex justify-between">
                         <Link
                           to={`/productupdate/${product._id}`}
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
+                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-pink-300"
                         >
                           Update Product
                           <svg
@@ -101,9 +101,6 @@ const AllProducts = () => {
               ))}
             </div>
           </div>
-          {/* <div className="md:w-1/4 p-3 mt-2">
-            <AdminMenu />
-          </div> */}
         </div>
       </div>
     </>

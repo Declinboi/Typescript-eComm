@@ -75,7 +75,7 @@ const UserList: React.FC = () => {
       ) : (
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
-          <table className="w-full md:w-4/5 mx-auto">
+          <table className="w-full md:w-4/5 mx-auto px-4">
             <thead>
               <tr>
                 <th className="px-4 py-2 text-left">ID</th>
@@ -99,7 +99,7 @@ const UserList: React.FC = () => {
                         />
                         <button
                           onClick={() => updateHandler(user._id)}
-                          className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
+                          className="ml-2 bg-green-500 text-white py-2 px-4 rounded-lg"
                         >
                           <Check />
                         </button>
@@ -128,7 +128,7 @@ const UserList: React.FC = () => {
                         />
                         <button
                           onClick={() => updateHandler(user._id)}
-                          className="ml-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
+                          className="ml-2 bg-green-500 text-white py-2 px-4 rounded-lg"
                         >
                           <Check />
                         </button>

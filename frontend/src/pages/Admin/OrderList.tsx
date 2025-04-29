@@ -17,11 +17,11 @@ const OrderList = () => {
         ?.message || (error as { error?: string })?.error}
     </Message>
       ) : (
-        <table className="container mx-auto">
+        <table className="container mx-auto px-4  ">
           <AdminMenu />
 
-          <thead className="w-full border">
-            <tr className="mb-[5rem]">
+          <thead className="w-full rounded-md">
+            <tr className="mb-[5rem] text-green-500">
               <th className="text-left pl-1">ITEMS</th>
               <th className="text-left pl-1">ID</th>
               <th className="text-left pl-1">USER</th>
@@ -55,11 +55,11 @@ const OrderList = () => {
 
                 <td className="py-2">
                   {order.isPaid ? (
-                    <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
+                    <p className="p-1 text-center text-sm bg-green-400 w-[6rem] rounded-full">
                       Completed
                     </p>
                   ) : (
-                    <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
+                    <p className="p-1 text-center text-sm bg-red-400 w-[6rem] rounded-full">
                       Pending
                     </p>
                   )}
@@ -67,11 +67,11 @@ const OrderList = () => {
 
                 <td className="px-2 py-2">
                   {order.isDelivered ? (
-                    <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
+                    <p className="p-1 text-center text-sm bg-green-400 w-[6rem] rounded-full">
                       Completed
                     </p>
                   ) : (
-                    <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
+                    <p className="p-1 text-center text-sm bg-red-400 w-[6rem] rounded-full">
                       Pending
                     </p>
                   )}

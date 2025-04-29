@@ -51,7 +51,7 @@ const PlaceOrder = () => {
           <Message>Your cart is empty</Message>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse px-4">
               <thead>
                 <tr>
                   <td className="px-1 py-2 text-left align-top">Image</td>
@@ -92,7 +92,7 @@ const PlaceOrder = () => {
 
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-5">Order Summary</h2>
-          <div className="flex justify-between p-8 text-white bg-[#181818]">
+          <div className="flex justify-between p-8 text-white bg-green-300">
             <ul className="text-lg ">
               <li>
                 <span className="font-semibold mb-4">Items:</span> $
@@ -136,7 +136,7 @@ const PlaceOrder = () => {
 
           <button
             type="button"
-            className="bg-pink-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4 cursor-pointer"
+            className="bg-green-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4 cursor-pointer"
             disabled={cart?.cartItems === 0}
             onClick={placeOrderHandler}
           >

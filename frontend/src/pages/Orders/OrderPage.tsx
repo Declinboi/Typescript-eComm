@@ -166,29 +166,30 @@ const OrderPage = () => {
       </div>
 
       <div className="md:w-1/3">
-        <div className="mt-5 border-gray-300 pb-4 mb-4">
+        <div className="mt-5 border-dotted border-2 border-green-300 pb-4 mb-4">
           <h2 className="text-xl font-bold mb-2">Shipping</h2>
           <p className="mb-4 mt-4">
-            <strong className="text-pink-500">Order:</strong> {order._id}
+            <strong className="text-green-500">Order:</strong> {order._id}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Name:</strong>{" "}
+            <strong className="text-green-500">Name:</strong>{" "}
             {order.user.username}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Email:</strong> {order.user.email}
+            <strong className="text-green-500">Email:</strong>{" "}
+            {order.user.email}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Address:</strong>{" "}
+            <strong className="text-green-500">Address:</strong>{" "}
             {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
             {order.shippingAddress.postalCode}, {order.shippingAddress.country}
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Method:</strong>{" "}
+            <strong className="text-green-500">Method:</strong>{" "}
             {order.paymentMethod}
           </p>
 
@@ -200,7 +201,7 @@ const OrderPage = () => {
         </div>
 
         <h2 className="text-xl font-bold mb-2 mt-[3rem]">Order Summary</h2>
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between mb-2  ">
           <span>Items</span>
           <span>$ {order.itemsPrice}</span>
         </div>
@@ -223,7 +224,7 @@ const OrderPage = () => {
               <Loader className="h-4 w-4 animate-spin text-emerald-800" />
             )}{" "}
             {isPending ? (
-              <Loader />
+              <Loader className="h-4 w-4 animate-spin text-gray-800" />
             ) : (
               <div>
                 <div>
@@ -246,7 +247,7 @@ const OrderPage = () => {
           <div>
             <button
               type="button"
-              className="bg-pink-500 text-white w-full py-2"
+              className="bg-green-500 text-white w-full py-2"
               onClick={deliverHandler}
             >
               Mark As Delivered

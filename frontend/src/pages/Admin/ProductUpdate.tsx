@@ -1,8 +1,4 @@
-import {
-  useState,
-  useEffect,
-  ChangeEvent
-} from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import AdminMenu from "./AdminMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -79,7 +75,7 @@ const ProductUpdate = () => {
     }
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -105,7 +101,7 @@ const ProductUpdate = () => {
         toast.error("Product update failed. Try again.");
       } else {
         toast.success("Product successfully updated");
-        navigate("/productlist");
+        navigate("/allproducts");
       }
     } catch (err) {
       console.log(err);
@@ -121,9 +117,9 @@ const ProductUpdate = () => {
       if (!answer) return;
 
       const { data } = await deleteProduct(params._id).unwrap();
-      console.log(data)
-      toast.success("Product is deleted");
-      navigate("/productlist");
+      console.log(data);
+      toast.success("Product was deleted");
+      navigate("/allproducts");
     } catch (err) {
       console.log(err);
       toast.error("Delete failed. Try again.");
@@ -136,27 +132,17 @@ const ProductUpdate = () => {
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
           <div className="md:w-3/4 p-3">
-            <div className="h-12 font-bold">Update / Delete Product</div>
+            <div className="h-12 text-3xl font-bold">Update / Delete Product</div>
 
             {imageUrl && (
-            <div className="text-center">
-              <img
-                src={imageUrl}
-                alt="product"
-                className="block mx-auto max-h-[200px]"
-              />
-            </div>
-          )}
-
-            {/* {image && (
               <div className="text-center">
                 <img
-                  src={image}
+                  src={imageUrl}
                   alt="product"
                   className="block mx-auto max-h-[200px]"
                 />
               </div>
-            )} */}
+            )}
 
             <div className="mb-3">
               <label className="border border-emerald-950 text-black px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11 ">
@@ -257,7 +243,7 @@ const ProductUpdate = () => {
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-pink-600"
+                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-red-600"
                 >
                   Delete
                 </button>
