@@ -15,14 +15,14 @@ const ProductCard = ({ p }:any) => {
   };
 
   return (
-    <div className="max-w-sm relative bg-white rounded-lg shadow-lg px-4 ">
+    <div className="max-w-sm relative bg-gray-100 rounded-lg shadow-lg px-4 ">
       <section className="relative">
         <Link to={`/product-details/${p._id}`}>
           <span className="absolute bottom-3 right-3 bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full shadow-lg">
             {p?.brand}
           </span>
           <img
-            className="cursor-pointer w-full"
+            className="cursor-pointer w-full rounded-2xl"
             src={p.image}
             alt={p.name}
             style={{ height: "170px", objectFit: "cover" }}
@@ -43,7 +43,7 @@ const ProductCard = ({ p }:any) => {
           </p>
         </div>
 
-        <p className="mb-3 font-normal text-[#CFCFCF]">
+        <p className="mb-3 font-normal text-gray-500">
           {p?.description?.substring(0, 60)} ...
         </p>
 
