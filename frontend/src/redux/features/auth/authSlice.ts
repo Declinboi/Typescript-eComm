@@ -23,13 +23,19 @@ const authSlice = createSlice({
 
       const expirationTime = new Date().getTime() + 30 * 24 * 60 * 60 * 1000; // 30 days
       localStorage.setItem("expirationTime", expirationTime.toString());
-      
-      // localStorage.setItem("jwt", token);
+
+      // ✅ Save token in cookies instead of localStorage
+      if (action.payload.token) {
+        document.cookie = `token=${action.payload.token}; max-age=${30 * 24 * 60 * 60}; path=/; secure; samesite=strict`;
+      }
     },
     logout: (state) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
       localStorage.removeItem("expirationTime");
+
+      // ❌ Clear cookie
+      document.cookie = "token=; max-age=0; path=/;";
     },
   },
 });
