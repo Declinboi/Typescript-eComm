@@ -22,10 +22,11 @@ export const createUser = asyncHandler(
 
     try {
       await newUser.save();
-      createToken(res, newUser._id as mongoose.Types.ObjectId);
+      const token = createToken(res, newUser._id as mongoose.Types.ObjectId);
 
       res.status(201).json({
         ...newUser.toObject(),
+        token,
       });
     } catch (error) {
       res.status(400);
@@ -60,10 +61,11 @@ export const loginUser = asyncHandler(
       return;
     }
 
-    createToken(res, existingUser._id as mongoose.Types.ObjectId);
+    const token = createToken(res, existingUser._id as mongoose.Types.ObjectId);
 
     res.status(200).json({
       ...existingUser.toObject(),
+      token,
     });
   }
 );
