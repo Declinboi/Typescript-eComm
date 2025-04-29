@@ -33,7 +33,7 @@ const ProductCard = ({ p }:any) => {
 
       <div className="p-5">
         <div className="flex justify-between">
-          <h5 className="mb-2 text-xl text-whiet">{p?.name}</h5>
+          <h5 className="mb-2 text-xl ">{p?.name}</h5>
 
           <p className=" font-semibold text-green-500">
             {p?.price?.toLocaleString("en-US", {
@@ -43,7 +43,7 @@ const ProductCard = ({ p }:any) => {
           </p>
         </div>
 
-        <p className="mb-3 font-normal text-gray-500">
+        <p className="mb-3 font-normal text-sm text-gray-500">
           {p?.description?.substring(0, 60)} ...
         </p>
 
