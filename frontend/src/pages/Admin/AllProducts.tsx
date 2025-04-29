@@ -43,18 +43,18 @@ const AllProducts = () => {
             <div className="ml-[2rem]  text-xl font-bold h-12">
               All Products ({products?.length})
             </div>
-            <div className="flex flex-wrap mt-4 justify-around shadow-lg border-2 border-t-green-400 items-center">
+            <div className="flex flex-wrap mt-4 justify-around shadow-lg border-2 border-green-400 items-center">
               {products?.map((product: Product) => (
                 <Link
                   key={product._id}
                   to={`/productupdate/${product._id}`}
-                  className="block  mb-4 shadow-lg overflow-hidden"
+                  className="block mt-2 mb-4 shadow-lg overflow-hidden"
                 >
                   <div className="flex">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-[10rem] object-cover"
+                      className="w-[10rem] object-cover rounded-md"
                     />
                     <div className="p-4 flex flex-col justify-around">
                       <div className="flex justify-between">
