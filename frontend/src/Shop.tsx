@@ -87,7 +87,7 @@ const Shop = () => {
     <>
       <div className="container mx-auto shadow-lg rounded-md">
         <div className="flex md:flex-row">
-          <div className="bg-gray-200  p-3 mt-2 mb-2">
+          <div className="bg-gray-200 text-black p-3 mt-2 mb-2">
             <h2 className="h4 text-center py-2 bg-green-600 rounded-lg mb-2">
               Filter by Categories
             </h2>
@@ -105,7 +105,7 @@ const Shop = () => {
 
                     <label
                       htmlFor="pink-checkbox"
-                      className="ml-2 text-sm font-medium text-white dark:text-gray-300"
+                      className="ml-2 text-sm font-medium"
                     >
                       {c.name}
                     </label>
@@ -132,7 +132,7 @@ const Shop = () => {
 
                     <label
                       htmlFor="pink-radio"
-                      className="ml-2 text-sm font-medium text-white"
+                      className="ml-2 text-sm font-medium"
                     >
                       {brand}
                     </label>
