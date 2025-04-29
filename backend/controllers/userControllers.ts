@@ -26,7 +26,6 @@ export const createUser = asyncHandler(
 
       res.status(201).json({
         ...newUser.toObject(),
-        token,
       });
     } catch (error) {
       res.status(400);
@@ -65,7 +64,6 @@ export const loginUser = asyncHandler(
 
     res.status(200).json({
       ...existingUser.toObject(),
-      token,
     });
   }
 );
