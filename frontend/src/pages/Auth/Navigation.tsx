@@ -55,7 +55,7 @@ const Navigation = () => {
       {/* Hamburger Button (visible on small screens) */}
       <button
         onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-99999 p-2 bg-black text-white text-sm rounded-md shadow-lg md:hidden "
+        className="fixed top-2 left-10 z-99999 p-2 bg-black text-white text-sm rounded-md shadow-lg md:hidden "
       >
         {showSidebar ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -98,7 +98,7 @@ const Navigation = () => {
           <Link
             to="/favorite"
             onClick={toggleSidebar}
-            className="flex items-center"
+            className="flex items-center relative"
           >
             <Heart className="mr-2" />
             <span>FAVORITES</span>
