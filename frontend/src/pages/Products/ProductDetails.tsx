@@ -63,7 +63,7 @@ const ProductDetails = () => {
       <div>
         <Link
           to="/"
-          className="text-black rounded-lg shadow-lg bg-green-200 hover:text-gray-700 font-semibold hover:underline ml-[10rem]"
+          className="text-black rounded-lg px-4 py-2 shadow-lg bg-green-200 hover:text-gray-700 font-semibold hover:underline ml-[10rem]"
         >
           Go Back
         </Link>
@@ -78,7 +78,7 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap relative px-4 text-black rounded-lg shadow-lg items-between mt-[2rem] ml-[10rem]">
+          <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg items-between mt-[2rem] ml-[10rem]">
             <div>
               <img
                 src={product.image}
@@ -127,7 +127,7 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <div className="flex justify-between flex-wrap">
+              <div className="flex justify-between flex-wrap ">
                 <Ratings
                   value={product.rating}
                   text={`${product.numReviews} reviews`}
