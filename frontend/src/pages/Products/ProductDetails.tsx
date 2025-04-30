@@ -78,7 +78,7 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg items-between mt-[2rem] ml-[10rem]">
+          <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg items-between mt-[2rem] mr-[5rem] ml-[10rem]">
             <div>
               <img
                 src={product.image}

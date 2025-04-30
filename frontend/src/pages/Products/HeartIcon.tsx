@@ -49,7 +49,7 @@ const HeartIcon : React.FC<{product:Product}> = ({ product }) => {
       {isFavorite ? (
         <Heart className="fill-pink-500 stroke-pink-500" />
       ) : (
-        <Heart className="text-white" />
+        <Heart className="text-black" />
       )}
     </div>
   );

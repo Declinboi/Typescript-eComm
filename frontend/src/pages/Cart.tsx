@@ -33,26 +33,26 @@ const Cart = () => {
           </div>
         ) : (
           <>
-            <div className="flex flex-col w-[80%]">
-              <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
+            <div className="flex flex-col w-[80%]  ">
+              <h1 className="text-2xl text-green-800 font-semibold my-4">Shopping Cart</h1>
 
               {cartItems.map((item: any) => (
-                <div key={item._id} className="flex items-enter mb-[1rem] pb-2">
+                <div key={item._id} className="flex items-enter mb-[1rem] text-black rounded-lg shadow-lg pb-2">
                   <div className="w-[5rem] h-[5rem]">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover rounded"
+                      className="w-full h-full object-cover rounded-lg"
                     />
                   </div>
 
                   <div className="flex-1 ml-4">
-                    <Link to={`/product-details/${item._id}`} className="text-pink-500">
+                    <Link to={`/product-details/${item._id}`} className="text-green-500">
                       {item.name}
                     </Link>
 
-                    <div className="mt-2 text-white">{item.brand}</div>
-                    <div className="mt-2 text-white font-bold">
+                    <div className="mt-2 text-green-500 ">{item.brand}</div>
+                    <div className="mt-2 text-green-800 font-bold">
                       $ {item.price}
                     </div>
                   </div>
@@ -63,7 +63,7 @@ const Cart = () => {
                         onClick={() =>
                           addToCartHandler(item, Math.max(1, item.qty - 1))
                         }
-                        className="p-2 bg-gray-300 rounded-full text-black"
+                        className="p-2 bg-green-200 shadow-lg rounded-lg text-black"
                         disabled={item.qty <= 1}
                       >
                         -
@@ -78,7 +78,7 @@ const Cart = () => {
                             Math.min(item.countInStock, item.qty + 1)
                           )
                         }
-                        className="p-2 bg-gray-300 rounded-full text-black"
+                        className="p-2 bg-green-200 rounded-lg text-black"
                         disabled={item.qty >= item.countInStock}
                       >
                         +
@@ -119,7 +119,7 @@ const Cart = () => {
                   </div>
 
                   <button
-                    className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
+                    className="bg-green-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
                     disabled={cartItems.length === 0}
                     onClick={checkoutHandler}
                   >

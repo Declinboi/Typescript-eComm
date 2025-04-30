@@ -85,7 +85,10 @@ const OrderList = () => {
           </tbody>
         </table>
       )}
+      <div className="mt-4">
+
       <AdminMenu />
+      </div>
     </>
   );
 };
