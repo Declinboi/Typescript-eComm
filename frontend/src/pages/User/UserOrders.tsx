@@ -8,7 +8,7 @@ const UserOrder = () => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">My Orders </h2>
+      <h2 className="text-2xl text-center font-semibold mb-4">My Orders </h2>
 
       {isLoading ? (
         <Loader className="h-4 w-4 animate-spin text-emerald-800"/>
