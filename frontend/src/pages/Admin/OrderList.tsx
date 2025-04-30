@@ -1,7 +1,6 @@
 import Message from "../../components/Message";
 import { Link } from "react-router-dom";
 import { useGetOrdersQuery } from "../../redux/api/orderApiSlice";
-import AdminMenu from "./AdminMenu";
 import { Loader } from "lucide-react";
 
 const OrderList = () => {
@@ -17,7 +16,7 @@ const OrderList = () => {
             ?.message || (error as { error?: string })?.error}
         </Message>
       ) : (
-        <table className="container mx-auto px-6 border-2 border-gray-300 shadow-lg ">
+        <table className="container mx-4 px-6 border-2 border-gray-300 shadow-lg  ">
           <thead className="w-full rounded-md border-2 border-gray-300">
             <tr className="mb-[5rem] text-green-500">
               <th className="text-left pl-1">ITEMS</th>
@@ -85,9 +84,7 @@ const OrderList = () => {
           </tbody>
         </table>
       )}
-      <div className="mt-4 pt-6">
-      <AdminMenu />
-      </div>
+      
     </>
   );
 };
