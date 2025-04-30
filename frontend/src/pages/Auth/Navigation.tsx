@@ -62,7 +62,7 @@ const Navigation = () => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 left-5 z-[9999] h-full w-[75%] bg-black text-white p-6 transition-transform duration-300 md:hidden ${
+        className={`fixed top-0 left-0 z-[9999] h-full w-[75%] bg-black text-white p-6 transition-transform duration-300 md:hidden ${
           showSidebar ? "translate-x-0" : "-translate-x-full"
         }`}
       >
