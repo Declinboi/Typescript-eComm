@@ -17,7 +17,7 @@ const OrderList = () => {
         </Message>
       ) : (
         <div className="container">
-          <table className=" mx-4 px-6 border-2 border-gray-300 shadow-lg  ">
+          <table className=" mr-4 w-full px-6 border-2 border-gray-300 shadow-lg  ">
             <thead className="w-full rounded-md border-2 border-gray-300">
               <tr className="mb-[5rem] text-green-500">
                 <th className="text-left pl-1">ITEMS</th>
