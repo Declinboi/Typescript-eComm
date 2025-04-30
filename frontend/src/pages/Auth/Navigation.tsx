@@ -66,7 +66,7 @@ const Navigation = () => {
           showSidebar ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex flex-col space-y-6 mt-2">
+        <div className="flex flex-col space-y-6 mt-4">
           <Link to="/" onClick={toggleSidebar} className="flex items-center">
             <HomeIcon className="mr-2" />
             <span>HOME</span>
