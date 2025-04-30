@@ -56,7 +56,7 @@ const Navigation = () => {
     {/* Hamburger Button (visible on small screens) */}
     <button
       onClick={toggleSidebar}
-      className="fixed top-4 left-4 z-50 p-2 bg-black text-white rounded-md shadow-lg md:hidden"
+      className="fixed top-4 left-4 z-99999 p-2 bg-black text-white text-sm rounded-md shadow-lg md:hidden w-[40%] "
     >
       {showSidebar ? <X size={24} /> : <Menu size={24} />}
     </button>
@@ -65,7 +65,7 @@ const Navigation = () => {
       style={{ zIndex: 9999 }}
       className={`${
         showSidebar ? "hidden" : "flex"
-      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-[#000] w-[5%] hover:w-[15%] h-[100vh]  fixed `}
+      } xl:flex lg:flex hidden sm:hidden flex-col justify-between p-4 text-white bg-[#000] w-[5%] hover:w-[15%] h-[100vh]  fixed `}
       id="navigation-container"
     >
       <div className="flex flex-col justify-center space-y-4">
