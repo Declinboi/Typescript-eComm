@@ -46,12 +46,12 @@ const PlaceOrder = () => {
     <>
       <ProgressSteps step1 step2 step3 />
 
-      <div className="container mx-auto mt-8">
+      <div className="container mx-6 mt-8">
         {cart.cartItems.length === 0 ? (
           <Message>Your cart is empty</Message>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse px-4">
+            <table className=" ml-4 w-full border-collapse border-2 border-gray-300 shadow-lg px-4 ">
               <thead>
                 <tr>
                   <td className="px-1 py-2 text-left align-top">Image</td>
@@ -92,7 +92,7 @@ const PlaceOrder = () => {
 
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-5">Order Summary</h2>
-          <div className="flex justify-between p-8 text-white bg-green-300">
+          <div className="flex justify-between p-8 text-black bg-green-100">
             <ul className="text-lg ">
               <li>
                 <span className="font-semibold mb-4">Items:</span> $
@@ -136,7 +136,7 @@ const PlaceOrder = () => {
 
           <button
             type="button"
-            className="bg-green-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4 cursor-pointer"
+            className="bg-green-500 text-black py-2 px-4 rounded-full text-lg w-full mt-4 cursor-pointer"
             disabled={cart?.cartItems === 0}
             onClick={placeOrderHandler}
           >
