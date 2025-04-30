@@ -22,7 +22,7 @@ const HeartIcon : React.FC<{product:Product}> = ({ product }) => {
   const favorites = useSelector((state: RootState) => state.favorites);
 
 
-  const isFavorite = favorites.some((p) => p._id === product._id);
+  const isFavorite = favorites.some((p:any) => p._id === product._id);
 
   useEffect(() => {
     const favoritesFromLocalStorage = getFavoritesFromLocalStorage();

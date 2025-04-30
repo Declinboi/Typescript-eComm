@@ -166,7 +166,7 @@ const OrderPage = () => {
       </div>
 
       <div className="md:w-1/3">
-        <div className="mt-5 border-dotted border-2 border-green-300 pb-4 mb-4">
+        <div className="mt-5 p-2 rounded-lg border-dotted border-2 border-green-300 pb-4 mb-4">
           <h2 className="text-xl font-bold mb-2">Shipping</h2>
           <p className="mb-4 mt-4">
             <strong className="text-green-500">Order:</strong> {order._id}

@@ -6,10 +6,12 @@ import {
   Heart,
   HomeIcon,
   LogInIcon,
+  Menu,
   ShoppingBagIcon,
   ShoppingCart,
   User,
   User2Icon,
+  X,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/userApiSlice";
@@ -23,19 +25,16 @@ const Navigation = () => {
   const { cartItems } = cart;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [showSidebar, _setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  // const toggleSidebar = () => {
-  //   setShowSidebar(!showSidebar);
-  // };
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
-  // const closeSidebar = () => {
-  //   setShowSidebar(false);
-  // };
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,7 +52,15 @@ const Navigation = () => {
   };
 
   return (
-    // <div className="">
+    <>
+    {/* Hamburger Button (visible on small screens) */}
+    <button
+      onClick={toggleSidebar}
+      className="fixed top-4 left-4 z-50 p-2 bg-black text-white rounded-md shadow-lg md:hidden"
+    >
+      {showSidebar ? <X size={24} /> : <Menu size={24} />}
+    </button>
+    
     <div
       style={{ zIndex: 9999 }}
       className={`${
@@ -217,7 +224,7 @@ const Navigation = () => {
         )}
       </div>
     </div>
-    // </div>
+     </>
   );
 };
 

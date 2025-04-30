@@ -17,13 +17,13 @@ const OrderList = () => {
             ?.message || (error as { error?: string })?.error}
         </Message>
       ) : (
-        <table className="container mx-auto px-4 border-2 border-gray-300 shadow-lg ">
+        <table className="container mx-auto px-6 border-2 border-gray-300 shadow-lg ">
           <thead className="w-full rounded-md border-2 border-gray-300">
             <tr className="mb-[5rem] text-green-500">
               <th className="text-left pl-1">ITEMS</th>
               <th className="text-left pl-1">ID</th>
               <th className="text-left pl-1">USER</th>
-              <th className="text-left pl-1">DATA</th>
+              <th className="text-left pl-1">DATE</th>
               <th className="text-left pl-1">TOTAL</th>
               <th className="text-left pl-1">PAID</th>
               <th className="text-left pl-1">DELIVERED</th>
@@ -85,8 +85,7 @@ const OrderList = () => {
           </tbody>
         </table>
       )}
-      <div className="mt-4">
-
+      <div className="mt-4 pt-6">
       <AdminMenu />
       </div>
     </>
