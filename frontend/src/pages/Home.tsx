@@ -37,7 +37,7 @@ const Home = () => {
           </div>
 
           <div>
-            <div className="flex justify-center flex-wrap mt-[2rem]">
+            <div className="flex justify-center flex-wrap mt-[2rem] rounded-lg shadow-lg ">
               {data.products.map((product: Product) => (
                 <div key={product._id}>
                   <ProductH product={product} />

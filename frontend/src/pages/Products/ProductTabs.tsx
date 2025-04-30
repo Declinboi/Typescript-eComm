@@ -33,7 +33,7 @@ const ProductTabs = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row rounded-lg shadow-lg px-4">
       <section className="mr-[5rem]">
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
@@ -62,9 +62,9 @@ const ProductTabs = ({
       </section>
 
       {/* Second Part */}
-      <section>
+      <section >
         {activeTab === 1 && (
-          <div className="mt-4">
+          <div className="mt-4 rounded-lg shadow-lg bg-green-100" >
             {userInfo ? (
               <form onSubmit={submitHandler}>
                 <div className="my-2">
@@ -105,7 +105,7 @@ const ProductTabs = ({
                 <button
                   type="submit"
                   disabled={loadingProductReview}
-                  className="bg-pink-600 text-white py-2 px-4 rounded-lg"
+                  className="bg-green-600 text-black py-2 px-4 shadow-lg rounded-lg"
                 >
                   Submit
                 </button>
@@ -128,7 +128,7 @@ const ProductTabs = ({
               {product.reviews.map((review: any) => (
                 <div
                   key={review._id}
-                  className="bg-[#1A1A1A] p-4 rounded-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
+                  className="bg-green-100 p-4 rounded-lg shadow-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
                 >
                   <div className="flex justify-between">
                     <strong className="text-[#B0B0B0]">{review.name}</strong>
@@ -148,7 +148,7 @@ const ProductTabs = ({
 
       <section>
         {activeTab === 3 && (
-          <section className="ml-[4rem] flex flex-wrap">
+          <section className="ml-[4rem] flex flex-wrap bg-green-100 rounded-lg shadow-lg ">
             {!data ? (
               <Loader className="h-8 w-8 animate-spin text-emerald-800"/>
             ) : (
@@ -160,7 +160,7 @@ const ProductTabs = ({
             )}
           </section>
         )}
-      </section>
+      </section >
     </div>
   );
 };

@@ -14,11 +14,11 @@ const AdminMenu = () => {
       <button
         className={`${
           isMenuOpen ? "top-2 right-2" : "top-5 right-7"
-        } bg-[#151515] p-2 fixed rounded-lg`}
+        } bg-[#151515] p-2 fixed rounded-lg z-50`}
         onClick={toggleMenu}
       >
         {isMenuOpen ? (
-          <X className="w-6 h-0.5 bg-gray-200 my-1 z-99" />
+          <X className="w-6 h-0.5 bg-gray-200 my-1 " />
         ) : (
           <>
             <MenuIcon className="w-6 h-0.5 bg-gray-200 my-1" />
@@ -27,7 +27,7 @@ const AdminMenu = () => {
       </button>
 
       {isMenuOpen && (
-        <section className="bg-[#151515] rounded-lg shadow-2xl p-4 fixed right-7 top-5">
+        <section className="bg-[#151515] rounded-lg shadow-2xl p-4 fixed right-7 top-5 z-40">
           <ul className="list-none mt-2">
             <li>
               <NavLink
