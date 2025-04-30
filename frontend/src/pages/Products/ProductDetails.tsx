@@ -63,7 +63,7 @@ const ProductDetails = () => {
       <div>
         <Link
           to="/"
-          className="text-white font-semibold hover:underline ml-[10rem]"
+          className="text-black rounded-lg shadow-lg bg-green-200 hover:text-gray-700 font-semibold hover:underline ml-[10rem]"
         >
           Go Back
         </Link>
@@ -78,12 +78,12 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
+          <div className="flex flex-wrap relative px-4 text-black rounded-lg shadow-lg items-between mt-[2rem] ml-[10rem]">
             <div>
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
+                className="w-full rounded-lg xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
               />
 
               <HeartIcon product={product} />
@@ -91,7 +91,7 @@ const ProductDetails = () => {
 
             <div className="flex flex-col justify-between">
               <h2 className="text-2xl font-semibold">{product.name}</h2>
-              <p className="my-4 xl:w-[35rem] lg:w-[35rem] md:w-[30rem] text-[#B0B0B0]">
+              <p className="my-4 xl:w-[35rem] lg:w-[35rem] md:w-[30rem] text-green-500">
                 {product.description}
               </p>
 
@@ -100,28 +100,28 @@ const ProductDetails = () => {
               <div className="flex items-center justify-between w-[20rem]">
                 <div className="one">
                   <h1 className="flex items-center mb-6">
-                    <Store className="mr-2 text-white" /> Brand: {product.brand}
+                    <Store className="mr-2 text-green-800" /> Brand: {product.brand}
                   </h1>
                   <h1 className="flex items-center mb-6 w-[20rem]">
-                    <Clock className="mr-2 text-white" /> Added:{" "}
+                    <Clock className="mr-2 text-green-800" /> Added:{" "}
                     {moment(product.createAt).fromNow()}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <Star className="mr-2 text-white" /> Reviews:{" "}
+                    <Star className="mr-2 text-green-800" /> Reviews:{" "}
                     {product.numReviews}
                   </h1>
                 </div>
 
-                <div className="two">
+                <div className="two rounded-lg shadow-lg">
                   <h1 className="flex items-center mb-6">
-                    <Star className="mr-2 text-white" /> Ratings: {rating}
+                    <Star className="mr-2 text-green-800" /> Ratings: {rating}
                   </h1>
                   <h1 className="flex items-center mb-6">
-                    <ShoppingCart className="mr-2 text-white" /> Quantity:{" "}
+                    <ShoppingCart className="mr-2 text-green-800" /> Quantity:{" "}
                     {product.quantity}
                   </h1>
                   <h1 className="flex items-center mb-6 w-[10rem]">
-                    <Box className="mr-2 text-white" /> In Stock:{" "}
+                    <Box className="mr-2 text-green-800" /> In Stock:{" "}
                     {product.countInStock}
                   </h1>
                 </div>
@@ -137,7 +137,7 @@ const ProductDetails = () => {
                   <div className="flex items-center space-x-3">
                     <button
                       onClick={() => setQty((prev) => Math.max(1, prev - 1))}
-                      className="p-2 bg-gray-300 rounded-full text-black"
+                      className="p-2 bg-green-300 rounded-full text-black"
                       disabled={qty <= 1}
                     >
                       -
@@ -151,7 +151,7 @@ const ProductDetails = () => {
                           Math.min(product.countInStock, prev + 1)
                         )
                       }
-                      className="p-2 bg-gray-300 rounded-full text-black"
+                      className="p-2 bg-green-300 rounded-lg text-black"
                       disabled={qty >= product.countInStock}
                     >
                       +
@@ -164,14 +164,14 @@ const ProductDetails = () => {
                 <button
                   onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
-                  className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
+                  className="bg-green-600 text-black py-2 px-4 rounded-lg mt-4 md:mt-0"
                 >
                   Add To Cart
                 </button>
               </div>
             </div>
 
-            <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
+            <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem] bg-green-100">
               <ProductTabs
                 loadingProductReview={loadingProductReview}
                 userInfo={userInfo}

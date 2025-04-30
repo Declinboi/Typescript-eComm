@@ -47,7 +47,7 @@ const HeartIcon : React.FC<{product:Product}> = ({ product }) => {
       onClick={toggleFavorites}
     >
       {isFavorite ? (
-        <Heart className="text-pink-500" />
+        <Heart className="fill-pink-500 stroke-pink-500" />
       ) : (
         <Heart className="text-white" />
       )}

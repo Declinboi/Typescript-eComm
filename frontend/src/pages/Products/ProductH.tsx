@@ -4,7 +4,7 @@ import { Product } from "../Admin/AllProducts";
 
 const ProductH: React.FC<{product:Product} > = ({ product }) => {
   return (
-    <div className="w-[30rem] ml-[2rem] p-3 relative">
+    <div className="w-[30rem] ml-[2rem] p-3 relative rounded-lg shadow-lg ">
       <div className="relative">
         <img
           src={product.image}
@@ -14,11 +14,11 @@ const ProductH: React.FC<{product:Product} > = ({ product }) => {
         <HeartIcon product={product} />
       </div>
 
-      <div className="p-4">
-        <Link to={`/product/${product._id}`}>
+      <div className="p-4 rounded-lg shadow-lg">
+        <Link to={`/product-details/${product._id}`}>
           <h2 className="flex justify-between items-center">
             <div className="text-lg">{product.name}</div>
-            <span className="bg-pink-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-lg ">
+            <span className="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-lg ">
               $ {product.price}
             </span>
           </h2>
