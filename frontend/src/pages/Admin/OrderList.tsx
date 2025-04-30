@@ -16,8 +16,8 @@ const OrderList = () => {
             ?.message || (error as { error?: string })?.error}
         </Message>
       ) : (
-        <div className="container">
-          <table className=" mr-4 w-full px-6 border-2 border-gray-300 shadow-lg  ">
+        <div className="">
+          <table className=" container mr-4 w-full px-6 border-2 border-gray-300 shadow-lg  ">
             <thead className="w-full rounded-md border-2 border-gray-300">
               <tr className="mb-[5rem] text-green-500">
                 <th className="text-left pl-1">ITEMS</th>
