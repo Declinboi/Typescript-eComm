@@ -257,7 +257,7 @@ const OrderPage = () => {
     //   </div>
     // </div>
 
-    <div className="container flex flex-col md:flex-row px-4">
+    <div className="container ml-[10rem] flex flex-col md:flex-row px-4">
   <div className="md:w-2/3 md:pr-4">
     <div className="border border-gray-300 mt-5 pb-4 mb-5">
       {order.orderItems.length === 0 ? (
