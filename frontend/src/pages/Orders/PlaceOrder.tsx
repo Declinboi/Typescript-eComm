@@ -100,19 +100,19 @@ const PlaceOrder = () => {
             <ul className="space-y-2">
               <li>
                 <span className="font-semibold">Items:</span> $
-                {cart.itemsPrice.toFixed(2)}
+                {cart.itemsPrice}
               </li>
               <li>
                 <span className="font-semibold">Shipping:</span> $
-                {cart.shippingPrice.toFixed(2)}
+                {cart.shippingPrice}
               </li>
               <li>
                 <span className="font-semibold">Tax:</span> $
-                {cart.taxPrice.toFixed(2)}
+                {cart.taxPrice}
               </li>
               <li>
                 <span className="font-semibold">Total:</span> $
-                {cart.totalPrice.toFixed(2)}
+                {cart.totalPrice}
               </li>
             </ul>
 
