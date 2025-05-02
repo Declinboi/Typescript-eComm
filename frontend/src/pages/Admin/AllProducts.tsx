@@ -36,45 +36,45 @@ const AllProducts = () => {
 
   return (
     <>
-      <div className="container px-[5rem]">
+      <div className="container px-4 sm:px-6 md:px-[5rem]">
         <div className="flex flex-col md:flex-row">
-          <div className="p-3">
+          <div className="p-3 w-full">
             <AdminMenu />
-            <div className="ml-[2rem]  text-xl font-bold h-12">
+            <div className="ml-[2rem] text-lg sm:text-xl font-bold h-12">
               All Products ({products?.length})
             </div>
-            <div className="flex flex-wrap mt-4 mx-auto justify-around shadow-lg border-2 border-green-400 items-center overflow-x-hidden">
+
+            <div className="flex flex-wrap mt-4 justify-around shadow-lg border-2 border-green-400 items-center overflow-x-hidden">
               {products?.map((product: Product) => (
                 <Link
                   key={product._id}
                   to={`/productupdate/${product._id}`}
-                  className="block mt-2 mb-4 shadow-lg overflow-hidden"
+                  className="block w-full sm:w-[90%] md:w-[48%] lg:w-[48%] xl:w-[45%] mt-2 mb-4 shadow-lg overflow-hidden"
                 >
-                  <div className="flex rounded-lg">
+                  <div className="flex flex-row gap-4 p-2 rounded-lg bg-white hover:shadow-xl transition duration-300">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-[10rem] object-cover rounded-md"
+                      className="w-[6rem] sm:w-[8rem] md:w-[10rem] object-cover rounded-md shrink-0"
                     />
-                    <div className="p-4 flex flex-col justify-around">
-                      <div className="flex justify-between">
-                        <h5 className="text-xl font-semibold mb-2">
+                    <div className="p-2 flex flex-col justify-between w-full">
+                      <div className="flex justify-between flex-wrap items-center gap-2">
+                        <h5 className="text-base sm:text-lg md:text-xl font-semibold">
                           {product?.name}
                         </h5>
-
-                        <p className="text-gray-400 text-xs">
+                        <p className="text-gray-400 text-xs sm:text-sm">
                           {moment(product.createdAt).format("MMMM Do YYYY")}
                         </p>
                       </div>
 
-                      <p className="text-gray-400 xl:w-[30rem] lg:w-[30rem] md:w-[20rem] sm:w-[10rem] text-sm mb-4">
+                      <p className="text-gray-500 text-xs sm:text-sm mt-1 mb-2 line-clamp-3">
                         {product?.description?.substring(0, 160)}...
                       </p>
 
-                      <div className="flex justify-between">
+                      <div className="flex justify-between items-center flex-wrap gap-2">
                         <Link
                           to={`/productupdate/${product._id}`}
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-pink-300"
+                          className="inline-flex items-center px-3 py-2 text-xs sm:text-sm font-medium text-white bg-green-700 rounded-lg hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-pink-300"
                         >
                           Update Product
                           <svg
@@ -93,7 +93,9 @@ const AllProducts = () => {
                             />
                           </svg>
                         </Link>
-                        <p>$ {product?.price}</p>
+                        <p className="text-sm font-semibold text-green-800">
+                          $ {product?.price}
+                        </p>
                       </div>
                     </div>
                   </div>
