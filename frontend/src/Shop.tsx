@@ -39,7 +39,7 @@ const Shop = () => {
       if (!filteredProductsQuery.isLoading) {
         // Filter products based on both checked categories and price filter
         const filteredProducts = filteredProductsQuery.data.filter(
-          (product:Product) => {
+          (product: Product) => {
             // Check if the product price includes the entered price filter value
             return (
               product.price.toString().includes(priceFilter) ||
@@ -53,17 +53,17 @@ const Shop = () => {
     }
   }, [checked, radio, filteredProductsQuery.data, dispatch, priceFilter]);
 
-  const handleBrandClick = (brand:any) => {
+  const handleBrandClick = (brand: any) => {
     const productsByBrand = filteredProductsQuery.data?.filter(
-      (product:Product) => product.brand === brand
+      (product: Product) => product.brand === brand
     );
     dispatch(setProducts(productsByBrand));
   };
 
-  const handleCheck = (value:any, id:any) => {
+  const handleCheck = (value: any, id: any) => {
     const updatedChecked = value
       ? [...checked, id]
-      : checked.filter((c:any) => c !== id);
+      : checked.filter((c: any) => c !== id);
     dispatch(setChecked(updatedChecked));
   };
 
@@ -72,8 +72,8 @@ const Shop = () => {
     ...Array.from(
       new Set(
         filteredProductsQuery.data
-          ?.map((product:Product) => product.brand)
-          .filter((brand:any) => brand !== undefined)
+          ?.map((product: Product) => product.brand)
+          .filter((brand: any) => brand !== undefined)
       )
     ),
   ];
@@ -85,26 +85,26 @@ const Shop = () => {
 
   return (
     <>
-      <div className="container md:ml-[3rem] mx-auto shadow-lg rounded-md">
-        <div className="flex md:flex-row">
-          <div className="bg-gray-200 text-black p-3 mt-2 mb-2">
+      <div className="container mx-auto shadow-lg rounded-md px-4 md:px-6">
+        <div className="flex flex-col md:flex-row">
+          {/* Sidebar Filters */}
+          <div className="bg-gray-200 text-black p-3 mt-2 mb-2 md:w-[18rem] w-full">
             <h2 className="h4 text-center py-2 bg-green-600 rounded-lg mb-2">
               Filter by Categories
             </h2>
 
-            <div className="p-5 w-[15rem]">
+            <div className="p-5">
               {categories?.map((c) => (
                 <div key={c._id} className="mb-2">
-                  <div className="flex ietms-center mr-4">
+                  <div className="flex items-center mr-4">
                     <input
                       type="checkbox"
-                      id="red-checkbox"
+                      id={`category-${c._id}`}
                       onChange={(e) => handleCheck(e.target.checked, c._id)}
                       className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 focus:ring-2"
                     />
-
                     <label
-                      htmlFor="pink-checkbox"
+                      htmlFor={`category-${c._id}`}
                       className="ml-2 text-sm font-medium"
                     >
                       {c.name}
@@ -119,33 +119,24 @@ const Shop = () => {
             </h2>
 
             <div className="p-5">
-              {uniqueBrands?.map((brand:any) => (
-                <>
-                  <div className="flex items-enter mr-4 mb-5">
-                    <input
-                      type="radio"
-                      // id={brand}
-                      name="brand"
-                      onChange={() => handleBrandClick(brand)}
-                      className="w-4 h-4 text-green-400 bg-gray-100 border-gray-300 focus:ring-green-500  focus:ring-2"
-                    />
-
-                    <label
-                      htmlFor="pink-radio"
-                      className="ml-2 text-sm font-medium"
-                    >
-                      {brand}
-                    </label>
-                  </div>
-                </>
+              {uniqueBrands?.map((brand: any, i: number) => (
+                <div className="flex items-center mr-4 mb-5" key={i}>
+                  <input
+                    type="radio"
+                    name="brand"
+                    onChange={() => handleBrandClick(brand)}
+                    className="w-4 h-4 text-green-400 bg-gray-100 border-gray-300 focus:ring-green-500 focus:ring-2"
+                  />
+                  <label className="ml-2 text-sm font-medium">{brand}</label>
+                </div>
               ))}
             </div>
 
             <h2 className="h4 text-center py-2 bg-green-600 rounded-lg mb-2">
-              Filer by Price
+              Filter by Price
             </h2>
 
-            <div className="p-5 w-[15rem]">
+            <div className="p-5">
               <input
                 type="text"
                 placeholder="Enter Price"
@@ -155,9 +146,9 @@ const Shop = () => {
               />
             </div>
 
-            <div className="p-5 pt-0 ">
+            <div className="p-5 pt-0">
               <button
-                className="w-full border-2 border-green-600 hover:bg-green-300  my-4 "
+                className="w-full border-2 border-green-600 hover:bg-green-300 my-4"
                 onClick={() => window.location.reload()}
               >
                 Reset
@@ -165,11 +156,14 @@ const Shop = () => {
             </div>
           </div>
 
-          <div className="p-3">
-            <h2 className="h4 text-3xl font-bold text-center mb-2">{products?.length} Products</h2>
-            <div className="flex flex-wrap">
+          {/* Products */}
+          <div className="p-3 flex-1">
+            <h2 className="text-3xl font-bold text-center mb-2">
+              {products?.length} Products
+            </h2>
+            <div className="flex flex-wrap justify-center sm:justify-start">
               {products.length === 0 ? (
-                <Loader className="h-8 w-8 animate-spin text-emerald-800"/>
+                <Loader className="h-8 w-8 animate-spin text-emerald-800" />
               ) : (
                 products?.map((p) => (
                   <div className="p-3" key={p._id}>
