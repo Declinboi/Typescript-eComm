@@ -35,7 +35,7 @@ const Header = () => {
         </div>
 
         {/* Product Carousel - always visible, stacked below on small screens */}
-        <div className="w-full xl:w-[60%]">
+        <div className="w-full">
           <ProductCarousel />
         </div>
       </div>
