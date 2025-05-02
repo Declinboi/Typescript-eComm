@@ -36,14 +36,14 @@ const AllProducts = () => {
 
   return (
     <>
-      <div className="container mx-[5rem]">
+      <div className="container px-[5rem]">
         <div className="flex flex-col md:flex-row">
           <div className="p-3">
             <AdminMenu />
             <div className="ml-[2rem]  text-xl font-bold h-12">
               All Products ({products?.length})
             </div>
-            <div className="flex flex-wrap mt-4 justify-around shadow-lg border-2 border-green-400 items-center">
+            <div className="flex flex-wrap mt-4 mx-auto justify-around shadow-lg border-2 border-green-400 items-center overflow-x-hidden">
               {products?.map((product: Product) => (
                 <Link
                   key={product._id}
