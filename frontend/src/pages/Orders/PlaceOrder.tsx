@@ -46,42 +46,43 @@ const PlaceOrder = () => {
     <>
       <ProgressSteps step1 step2 step3 />
 
-      <div className="container mx-6 mt-8">
+      <div className="container mx-auto px-4 mt-8">
         {cart.cartItems.length === 0 ? (
           <Message>Your cart is empty</Message>
         ) : (
-          <div className="overflow-x-auto">
-            <table className=" mr-4 w-full border-collapse border-2 border-gray-300 shadow-lg px-4 ">
-              <thead className="border-2 border-gray-300 shadow-lg">
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full border border-gray-300 shadow-lg">
+              <thead className="bg-gray-100">
                 <tr>
-                  <td className="px-1 py-2 text-left align-top">Image</td>
-                  <td className="px-1 py-2 text-left">Product</td>
-                  <td className="px-1 py-2 text-left">Quantity</td>
-                  <td className="px-1 py-2 text-left">Price</td>
-                  <td className="px-1 py-2 text-left">Total</td>
+                  <th className="px-3 py-2 text-left">Image</th>
+                  <th className="px-3 py-2 text-left">Product</th>
+                  <th className="px-3 py-2 text-left">Quantity</th>
+                  <th className="px-3 py-2 text-left">Price</th>
+                  <th className="px-3 py-2 text-left">Total</th>
                 </tr>
               </thead>
-
               <tbody>
-                {cart.cartItems.map((item: any, index: any) => (
-                  <tr key={index}>
+                {cart.cartItems.map((item: any, index: number) => (
+                  <tr key={index} className="border-t border-gray-200">
                     <td className="p-2">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-16 h-16 object-cover"
+                        className="w-16 h-16 object-cover rounded"
                       />
                     </td>
-
                     <td className="p-2">
-                      <Link to={`/productupdate/${item.product}`}>
+                      <Link
+                        to={`/productupdate/${item.product}`}
+                        className="text-blue-600 hover:underline"
+                      >
                         {item.name}
                       </Link>
                     </td>
                     <td className="p-2">{item.qty}</td>
-                    <td className="p-2">{item.price.toFixed(2)}</td>
+                    <td className="p-2">${item.price.toFixed(2)}</td>
                     <td className="p-2">
-                      $ {(item.qty * item.price).toFixed(2)}
+                      ${(item.qty * item.price).toFixed(2)}
                     </td>
                   </tr>
                 ))}
@@ -90,37 +91,33 @@ const PlaceOrder = () => {
           </div>
         )}
 
-        <div className="mt-8">
-          <h2 className="text-2xl text-center font-semibold mb-5">Order Summary</h2>
-          <div className="flex justify-between p-8 text-black bg-green-100">
-            <ul className="text-lg ">
+        <div className="bg-green-100 p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold text-center mb-6">
+            Order Summary
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6 text-lg">
+            <ul className="space-y-2">
               <li>
-                <span className="font-semibold mb-4">Items:</span> $
-                {cart.itemsPrice}
+                <span className="font-semibold">Items:</span> $
+                {cart.itemsPrice.toFixed(2)}
               </li>
               <li>
-                <span className="font-semibold mb-4">Shipping:</span> $
-                {cart.shippingPrice}
+                <span className="font-semibold">Shipping:</span> $
+                {cart.shippingPrice.toFixed(2)}
               </li>
               <li>
-                <span className="font-semibold mb-4">Tax:</span> $
-                {cart.taxPrice}
+                <span className="font-semibold">Tax:</span> $
+                {cart.taxPrice.toFixed(2)}
               </li>
               <li>
-                <span className="font-semibold mb-4">Total:</span> $
-                {cart.totalPrice}
+                <span className="font-semibold">Total:</span> $
+                {cart.totalPrice.toFixed(2)}
               </li>
             </ul>
 
-            {error && (
-              <Message variant="error">
-                {(error as { data?: { message?: string }; error?: string })
-                  ?.data?.message || (error as { error?: string })?.error}
-              </Message>
-            )}
-
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
+              <h3 className="text-xl font-semibold mb-2">Shipping</h3>
               <p>
                 <strong>Address:</strong> {cart?.shippingAddress.address},{" "}
                 {cart?.shippingAddress.city} {cart?.shippingAddress.postalCode},{" "}
@@ -129,22 +126,35 @@ const PlaceOrder = () => {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Payment Method</h2>
-              <strong>Method:</strong> {cart?.paymentMethod}
+              <h3 className="text-xl font-semibold mb-2">Payment Method</h3>
+              <p>
+                <strong>Method:</strong> {cart?.paymentMethod}
+              </p>
             </div>
           </div>
 
+          {error && (
+            <div className="mt-4">
+              <Message variant="error">
+                {(error as { data?: { message?: string }; error?: string })
+                  ?.data?.message || (error as { error?: string })?.error}
+              </Message>
+            </div>
+          )}
+
           <button
             type="button"
-            className="bg-green-500 text-black py-2 px-4 rounded-full text-lg w-full mt-4 cursor-pointer"
-            disabled={cart?.cartItems === 0}
+            className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full text-lg w-full mt-6 transition-colors"
+            disabled={cart.cartItems.length === 0}
             onClick={placeOrderHandler}
           >
             Place Order
           </button>
 
           {isLoading && (
-            <Loader className="h-4 w-4 animate-spin text-emerald-800" />
+            <div className="mt-4 flex justify-center">
+              <Loader className="h-5 w-5 animate-spin text-emerald-800" />
+            </div>
           )}
         </div>
       </div>

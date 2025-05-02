@@ -24,7 +24,7 @@ const Home = () => {
       ) : (
         <>
           <div className="flex flex-col md:flex-row justify-between items-center px-4 mt-20 md:mt-40">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-0 md:ml-20">
+            <h1 className="text-3xl text-center md:text-5xl font-bold mb-4 md:mb-0 md:ml-20">
               Special Products
             </h1>
 

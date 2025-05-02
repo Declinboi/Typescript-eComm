@@ -9,7 +9,7 @@ import { Product } from "../Admin/AllProducts";
 
 const ProductCarousel = () => {
   const { data: products, isLoading, error } = useGetTopProductsQuery();
-  console.log(products)
+  console.log(products);
 
   const settings = {
     dots: false,
@@ -23,7 +23,7 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="mb-4 lg:block xl:block md:block">
+    <div className="mb-4">
       {isLoading ? null : error ? (
         <Message variant="error">
           {(error as { data?: { message?: string }; error?: string })?.data
@@ -32,53 +32,57 @@ const ProductCarousel = () => {
       ) : (
         <Slider
           {...settings}
-          className="xl:w-[40rem]  lg:w-[35rem] md:w-[30rem] sm:w-[25rem] sm:block rounded-lg shadow-lg bg-gray-100"
+          className="w-full max-w-5xl mx-auto rounded-lg shadow-lg bg-gray-100 px-2"
         >
-          {products?.map((products: Product) => (
-            <div key={products._id}>
+          {products?.map((product: Product) => (
+            <div key={product._id} className="p-4">
               <img
-                src={products?.image}
-                alt={products.name}
-                className="w-full rounded-lg object-cover h-[30rem]"
+                src={product.image}
+                alt={product.name}
+                className="w-full h-80 md:h-[25rem] lg:h-[28rem] xl:h-[30rem] rounded-lg object-cover"
               />
 
-              <div className="mt-4 flex justify-between">
-                <div className="ml-4 one">
-                  <h2 className="font-bold">{products.name}</h2>
-                  <p className="mt-2 text-green-500"> $ {products.price}</p> <br /> 
-                  <p className=" text-sm w-[18rem]">
-                    {products?.description.substring(0, 160)} ...
+              <div className="mt-4 flex flex-col lg:flex-row justify-between gap-4">
+                {/* Product Info */}
+                <div className="flex-1">
+                  <h2 className="font-bold text-lg">{product.name}</h2>
+                  <p className="mt-2 text-green-500 text-base">
+                    ${product.price}
+                  </p>
+                  <p className="mt-2 text-sm text-gray-700 max-w-md">
+                    {product.description.substring(0, 160)}...
                   </p>
                 </div>
 
-                <div className="flex justify-between text-sm w-[15rem]">
-                  <div className="one w-full">
-                    <h1 className="flex text-sm mb-2  ">
-                      <Store className=" mr-2 text-green-400 " /> Brand:{" "}
-                      {products?.brand}
+                {/* Product Meta Info */}
+                <div className="flex flex-wrap lg:flex-nowrap justify-between text-sm flex-1 gap-4">
+                  <div className="w-full sm:w-[45%]">
+                    <h1 className="flex items-center mb-2">
+                      <Store className="mr-2 text-green-400" /> Brand:{" "}
+                      {product.brand}
                     </h1>
-                    <h1 className="flex mb-6 ">
+                    <h1 className="flex items-center mb-2">
                       <Clock className="mr-2 text-green-400" /> Added:{" "}
-                      {moment(products?.createdAt).fromNow()}
+                      {moment(product.createdAt).fromNow()}
                     </h1>
-                    <h1 className="flex mb-6">
-                      <Star className="mr-2 text-green-400" /> Reviews:
-                      {products?.numReviews}
+                    <h1 className="flex items-center mb-2">
+                      <Star className="mr-2 text-green-400" /> Reviews:{" "}
+                      {product.numReviews}
                     </h1>
                   </div>
 
-                  <div className="two w-full">
-                    <h1 className="flex mb-6">
+                  <div className="w-full sm:w-[45%]">
+                    <h1 className="flex items-center mb-2">
                       <Star className="mr-2 text-green-400" /> Ratings:{" "}
-                      {Math.round(products?.rating)}
+                      {Math.round(product.rating)}
                     </h1>
-                    <h1 className="flex mb-6">
+                    <h1 className="flex items-center mb-2">
                       <ShoppingCart className="mr-2 text-green-400" /> Quantity:{" "}
-                      {products.quantity}
+                      {product.quantity}
                     </h1>
-                    <h1 className="flex mb-6">
+                    <h1 className="flex items-center mb-2">
                       <Box className="mr-2 text-green-400" /> In Stock:{" "}
-                      {products.countInStock}
+                      {product.countInStock}
                     </h1>
                   </div>
                 </div>

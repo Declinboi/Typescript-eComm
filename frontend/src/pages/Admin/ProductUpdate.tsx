@@ -128,99 +128,132 @@ const ProductUpdate = () => {
 
   return (
     <>
-      <div className="container  xl:mx-[9rem] sm:mx-[0]">
+      <div className="container xl:mx-[9rem] sm:mx-0">
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
-          <div className="md:w-3/4 p-3">
-            <div className="h-12 text-3xl font-bold">Update / Delete Product</div>
+          <div className="md:w-3/4 p-5">
+            <h2 className="text-4xl font-bold mb-6">Update / Delete Product</h2>
 
             {imageUrl && (
-              <div className="text-center">
+              <div className="text-center mb-5">
                 <img
                   src={imageUrl}
                   alt="product"
-                  className="block mx-auto max-h-[200px]"
+                  className="mx-auto max-h-[200px] rounded-md shadow"
                 />
               </div>
             )}
 
-            <div className="mb-3">
-              <label className="border border-emerald-950 text-black px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11 ">
-                {image ? image.name : "Upload Image"}
-
+            <div className="mb-5">
+              <label className="border border-dashed border-emerald-800 text-black bg-white px-4 block w-full text-center rounded-lg cursor-pointer font-semibold py-10 hover:bg-emerald-100 transition duration-200">
+                {image ? image.name : "Click to Upload Image"}
                 <input
                   type="file"
                   name="image"
                   accept="image/*"
                   onChange={uploadFileHandler}
-                  className={!image ? "hidden" : "text-white"}
+                  className="hidden"
                 />
               </label>
             </div>
 
-            <div className="p-3">
-              <div className="flex flex-wrap">
-                <div className="one">
-                  <label htmlFor="name">Name</label> <br />
+            <div className="space-y-6">
+              <div className="flex flex-wrap gap-6">
+                <div className="flex-1 min-w-[200px]">
+                  <label htmlFor="name" className="block font-semibold mb-1">
+                    Name
+                  </label>
                   <Input
                     type="text"
+                    id="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
-                <div className="two ml-10 ">
-                  <label htmlFor="name block">Price</label> <br />
+
+                <div className="flex-1 min-w-[200px]">
+                  <label htmlFor="price" className="block font-semibold mb-1">
+                    Price
+                  </label>
                   <Input
                     type="number"
+                    id="price"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
               </div>
-              <div className="flex flex-wrap">
-                <div className="one">
-                  <label htmlFor="name block">Quantity</label> <br />
+
+              <div className="flex flex-wrap gap-6">
+                <div className="flex-1 min-w-[200px]">
+                  <label
+                    htmlFor="quantity"
+                    className="block font-semibold mb-1"
+                  >
+                    Quantity
+                  </label>
                   <Input
                     type="number"
+                    id="quantity"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                   />
                 </div>
-                <div className="two ml-10 ">
-                  <label htmlFor="name block">Brand</label> <br />
+
+                <div className="flex-1 min-w-[200px]">
+                  <label htmlFor="brand" className="block font-semibold mb-1">
+                    Brand
+                  </label>
                   <Input
                     type="text"
+                    id="brand"
                     value={brand}
                     onChange={(e) => setBrand(e.target.value)}
                   />
                 </div>
               </div>
 
-              <label htmlFor="" className="my-5">
-                Description
-              </label>
-              <Input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></Input>
+              <div>
+                <label
+                  htmlFor="description"
+                  className="block font-semibold mb-1"
+                >
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  className="w-full p-3 bg-[#101011] text-white border rounded-lg"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  rows={4}
+                ></textarea>
+              </div>
 
-              <div className="flex justify-between">
-                <div>
-                  <label htmlFor="name block">Count In Stock</label> <br />
+              <div className="flex flex-wrap gap-6">
+                <div className="flex-1 min-w-[200px]">
+                  <label htmlFor="stock" className="block font-semibold mb-1">
+                    Count In Stock
+                  </label>
                   <Input
-                    type="text"
+                    type="number"
+                    id="stock"
                     value={stock}
                     onChange={(e) => setStock(Number(e.target.value))}
                   />
                 </div>
 
-                <div>
-                  <label>Category</label> <br />
+                <div className="flex-1 min-w-[300px]">
+                  <label
+                    htmlFor="category"
+                    className="block font-semibold mb-1"
+                  >
+                    Category
+                  </label>
                   <select
-                    className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                    id="category"
+                    className="w-full p-3 bg-[#101011] text-white border rounded-lg"
                     onChange={(e) => setCategory(e.target.value)}
-                    defaultValue=""
+                    value={category}
                   >
                     <option value="" disabled>
                       Choose Category
@@ -234,16 +267,16 @@ const ProductUpdate = () => {
                 </div>
               </div>
 
-              <div className="">
+              <div className="flex gap-4 mt-6">
                 <button
                   onClick={handleSubmit}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6"
+                  className="px-8 py-3 rounded-lg text-white font-bold bg-green-600 hover:bg-green-700 transition"
                 >
                   Update
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-red-600"
+                  className="px-8 py-3 rounded-lg text-white font-bold bg-red-600 hover:bg-red-700 transition"
                 >
                   Delete
                 </button>

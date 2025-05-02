@@ -65,6 +65,7 @@ const UserList: React.FC = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl text-center font-semibold mb-4">Users List</h1>
+
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -75,100 +76,129 @@ const UserList: React.FC = () => {
       ) : (
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
-          <table className="w-full md:w-4/5 mx-auto px-4">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 text-left">ID</th>
-                <th className="px-4 py-2 text-left">NAME</th>
-                <th className="px-4 py-2 text-left">EMAIL</th>
-                <th className="px-4 py-2 text-left">ADMIN</th>
-                <th className="px-4 py-2"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user._id}>
-                  <td className="px-4 py-2">{user._id}</td>
-                  <td className="px-4 py-2">
-                    {editableUserId === user._id ? (
-                      <div className="flex items-center">
-                        <Input
-                          type="text"
-                          value={editableUserName}
-                          onChange={(e) => setEditableUserName(e.target.value)}
-                        />
-                        <button
-                          onClick={() => updateHandler(user._id)}
-                          className="ml-2 bg-green-500 text-white py-2 px-4 rounded-lg"
-                        >
-                          <Check />
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center">
-                        {user.username}{" "}
-                        <button
-                          onClick={() =>
-                            toggleEdit(user._id, user.username, user.email)
-                          }
-                        >
-                          <Edit className="ml-[1rem]" />
-                        </button>
-                      </div>
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    {editableUserId === user._id ? (
-                      <div className="flex items-center">
-                        <Input
-                          type="text"
-                          value={editableUserEmail}
-                          onChange={(e) => setEditableUserEmail(e.target.value)}
-                          className="w-full p-2 border rounded-lg"
-                        />
-                        <button
-                          onClick={() => updateHandler(user._id)}
-                          className="ml-2 bg-green-500 text-white py-2 px-4 rounded-lg"
-                        >
-                          <Check />
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center">
-                        <a href={`mailto:${user.email}`}>{user.email}</a>{" "}
-                        <button
-                          onClick={() =>
-                            toggleEdit(user._id, user.username, user.email)
-                          }
-                        >
-                          <Edit className="ml-[1rem]" />
-                        </button>
-                      </div>
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    {user.isAdmin ? (
-                      <Check style={{ color: "green" }} />
-                    ) : (
-                      <X style={{ color: "red" }} />
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    {!user.isAdmin && (
-                      <div className="flex">
+
+          <div className="overflow-x-auto w-full md:w-4/5 mx-auto">
+            <table className="w-full border border-gray-300 shadow-sm">
+              <thead className="bg-gray-100 text-left">
+                <tr>
+                  <th className="px-4 py-3">ID</th>
+                  <th className="px-4 py-3">NAME</th>
+                  <th className="px-4 py-3">EMAIL</th>
+                  <th className="px-4 py-3">ADMIN</th>
+                  <th className="px-4 py-3 text-center">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr
+                    key={user._id}
+                    className="border-t hover:bg-gray-50 transition duration-150"
+                  >
+                    <td className="px-4 py-2">{user._id}</td>
+
+                    {/* Username Cell */}
+                    <td className="px-4 py-2">
+                      {editableUserId === user._id ? (
+                        <div className="flex items-center">
+                          <Input
+                            type="text"
+                            value={editableUserName}
+                            onChange={(e) =>
+                              setEditableUserName(e.target.value)
+                            }
+                            className="w-full"
+                          />
+                          <button
+                            onClick={() => updateHandler(user._id)}
+                            className="ml-2 bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg"
+                            aria-label="Save Username"
+                          >
+                            <Check />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center">
+                          {user.username}
+                          <button
+                            onClick={() =>
+                              toggleEdit(user._id, user.username, user.email)
+                            }
+                            className="ml-3 text-blue-500"
+                            aria-label="Edit Username"
+                          >
+                            <Edit />
+                          </button>
+                        </div>
+                      )}
+                    </td>
+
+                    {/* Email Cell */}
+                    <td className="px-4 py-2">
+                      {editableUserId === user._id ? (
+                        <div className="flex items-center">
+                          <Input
+                            type="text"
+                            value={editableUserEmail}
+                            onChange={(e) =>
+                              setEditableUserEmail(e.target.value)
+                            }
+                            className="w-full"
+                          />
+                          <button
+                            onClick={() => updateHandler(user._id)}
+                            className="ml-2 bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg"
+                            aria-label="Save Email"
+                          >
+                            <Check />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center">
+                          <a
+                            href={`mailto:${user.email}`}
+                            className="text-blue-600 hover:underline"
+                          >
+                            {user.email}
+                          </a>
+                          <button
+                            onClick={() =>
+                              toggleEdit(user._id, user.username, user.email)
+                            }
+                            className="ml-3 text-blue-500"
+                            aria-label="Edit Email"
+                          >
+                            <Edit />
+                          </button>
+                        </div>
+                      )}
+                    </td>
+
+                    {/* Admin Status */}
+                    <td className="px-4 py-2">
+                      {user.isAdmin ? (
+                        <Check className="text-green-600" />
+                      ) : (
+                        <X className="text-red-600" />
+                      )}
+                    </td>
+
+                    {/* Actions */}
+                    <td className="px-4 py-2 text-center">
+                      {!user.isAdmin && (
                         <button
                           onClick={() => deleteHandler(user._id)}
                           className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                          aria-label="Delete User"
                         >
                           <Trash />
                         </button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

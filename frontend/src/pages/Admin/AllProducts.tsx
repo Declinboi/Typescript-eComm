@@ -36,64 +36,74 @@ const AllProducts = () => {
 
   return (
     <>
-      <div className="container mx-[9rem]">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row">
-          <div className="p-3">
+          {/* Sidebar */}
+          <div className="w-full md:w-1/4 p-4">
             <AdminMenu />
-            <div className="ml-[2rem]  text-xl font-bold h-12">
+          </div>
+
+          {/* Product List */}
+          <div className="w-full md:w-3/4 p-4">
+            <h2 className="text-2xl font-bold mb-4">
               All Products ({products?.length})
-            </div>
-            <div className="flex flex-wrap mt-4 justify-around shadow-lg border-2 border-green-400 items-center">
+            </h2>
+
+            <div className="flex flex-wrap gap-6 justify-center border-2 border-green-400 p-4 rounded-lg shadow-lg bg-white">
               {products?.map((product: Product) => (
                 <Link
                   key={product._id}
                   to={`/productupdate/${product._id}`}
-                  className="block mt-2 mb-4 shadow-lg overflow-hidden"
+                  className="w-full md:w-[45%] lg:w-[40%] xl:w-[30%] bg-gray-50 rounded-lg shadow hover:shadow-lg transition duration-200 overflow-hidden"
                 >
-                  <div className="flex rounded-lg">
+                  <div className="flex flex-col sm:flex-row items-center p-4 gap-4">
+                    {/* Image */}
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-[10rem] object-cover rounded-md"
+                      className="w-32 h-32 object-cover rounded-md"
                     />
-                    <div className="p-4 flex flex-col justify-around">
-                      <div className="flex justify-between">
-                        <h5 className="text-xl font-semibold mb-2">
-                          {product?.name}
-                        </h5>
 
-                        <p className="text-gray-400 text-xs">
-                          {moment(product.createdAt).format("MMMM Do YYYY")}
+                    {/* Product Info */}
+                    <div className="flex-1 flex flex-col justify-between h-full">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <h5 className="text-lg font-semibold">
+                            {product.name}
+                          </h5>
+                          <p className="text-xs text-gray-400">
+                            {moment(product.createdAt).format("MMM Do YYYY")}
+                          </p>
+                        </div>
+
+                        <p className="text-sm text-gray-500 line-clamp-3">
+                          {product.description?.substring(0, 160)}...
                         </p>
                       </div>
 
-                      <p className="text-gray-400 xl:w-[30rem] lg:w-[30rem] md:w-[20rem] sm:w-[10rem] text-sm mb-4">
-                        {product?.description?.substring(0, 160)}...
-                      </p>
-
-                      <div className="flex justify-between">
+                      <div className="mt-4 flex justify-between items-center">
                         <Link
                           to={`/productupdate/${product._id}`}
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-pink-300"
+                          className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-green-700 rounded-md hover:bg-emerald-800 focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
                         >
-                          Update Product
+                          Update
                           <svg
-                            className="w-3.5 h-3.5 ml-2"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-4 h-4 ml-2"
                             fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
                             viewBox="0 0 14 10"
                           >
                             <path
-                              stroke="currentColor"
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              strokeWidth={2}
                               d="M1 5h12m0 0L9 1m4 4L9 9"
                             />
                           </svg>
                         </Link>
-                        <p>$ {product?.price}</p>
+                        <span className="font-semibold text-green-600">
+                          ${product.price}
+                        </span>
                       </div>
                     </div>
                   </div>

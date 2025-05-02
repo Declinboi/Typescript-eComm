@@ -24,18 +24,24 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-around px-4 ">
-        <div className="xl:block hidden md:hidden:sm:hidden">
-          <div className="grid grid-cols-2 shadow-lg rounded-lg">
-            {data?.map((product: Product) => (
-              <div key={product._id}>
-                <SmallProduct product={product} />
-              </div>
-            ))}
-          </div>
+<div className="flex flex-col lg:flex-row justify-around items-start gap-6 px-4">
+  {/* Grid of small products - shown only on xl and above */}
+  <div className="hidden xl:block w-full max-w-md">
+    <div className="grid grid-cols-2 gap-4 shadow-lg rounded-lg">
+      {data?.map((product: Product) => (
+        <div key={product._id}>
+          <SmallProduct product={product} />
         </div>
-        <ProductCarousel />
-      </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Carousel - always visible */}
+  <div className="w-full flex-1">
+    <ProductCarousel />
+  </div>
+</div>
+
     </>
   );
 };
