@@ -5,8 +5,6 @@ import SmallProduct from "../pages/Products/SmallProduct";
 import ProductCarousel from "../pages/Products/ProductCarousel";
 import { Product } from "../pages/Admin/AllProducts";
 
-
-
 const Header = () => {
   const { data, isLoading, error } = useGetTopProductsQuery();
 
@@ -24,9 +22,10 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-around px-4 ">
-        <div className="xl:block hidden md:hidden">
-          <div className="grid grid-cols-2 shadow-lg rounded-lg">
+      <div className="flex flex-col xl:flex-row justify-center items-start px-4 gap-6">
+        {/* Product Grid - visible on xl and above */}
+        <div className="hidden xl:block w-full xl:w-[40%]">
+          <div className="grid grid-cols-2 gap-4 shadow-lg rounded-lg">
             {data?.map((product: Product) => (
               <div key={product._id}>
                 <SmallProduct product={product} />
@@ -34,7 +33,11 @@ const Header = () => {
             ))}
           </div>
         </div>
-        <ProductCarousel />
+
+        {/* Product Carousel - always visible, stacked below on small screens */}
+        <div className="w-full xl:w-[60%]">
+          <ProductCarousel />
+        </div>
       </div>
     </>
   );
