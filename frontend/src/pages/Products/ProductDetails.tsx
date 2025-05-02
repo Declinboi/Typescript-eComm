@@ -78,59 +78,53 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg justify-between mt-8 mx-[5%]">
-            {/* Product Image and Heart */}
-            <div className="relative">
+          <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg justify-between mt-8 mx-auto max-w-screen-xl">
+            <div className="w-full xl:w-1/2 p-4">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full max-w-4xl rounded-lg"
+                className="w-full rounded-lg object-cover"
               />
               <HeartIcon product={product} />
             </div>
 
-            {/* Product Info */}
-            <div className="flex flex-col justify-between max-w-2xl p-4">
+            <div className="w-full xl:w-1/2 flex flex-col justify-between p-4">
               <h2 className="text-2xl font-semibold">{product.name}</h2>
               <p className="my-4 text-green-500">{product.description}</p>
+              <p className="text-5xl my-4 font-extrabold">${product.price}</p>
 
-              <p className="text-5xl my-4 font-extrabold">$ {product.price}</p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                {/* Left Info Column */}
-                <div>
-                  <h1 className="flex items-center mb-2">
+              <div className="flex flex-wrap justify-between mb-6">
+                <div className="space-y-4">
+                  <h1 className="flex items-center">
                     <Store className="mr-2 text-green-800" /> Brand:{" "}
                     {product.brand}
                   </h1>
-                  <h1 className="flex items-center mb-2">
+                  <h1 className="flex items-center">
                     <Clock className="mr-2 text-green-800" /> Added:{" "}
                     {moment(product.createAt).fromNow()}
                   </h1>
-                  <h1 className="flex items-center mb-2">
+                  <h1 className="flex items-center">
                     <Star className="mr-2 text-green-800" /> Reviews:{" "}
                     {product.numReviews}
                   </h1>
                 </div>
 
-                {/* Right Info Column */}
-                <div>
-                  <h1 className="flex items-center mb-2">
+                <div className="space-y-4 rounded-lg shadow-md p-4 bg-white">
+                  <h1 className="flex items-center">
                     <Star className="mr-2 text-green-800" /> Ratings: {rating}
                   </h1>
-                  <h1 className="flex items-center mb-2">
+                  <h1 className="flex items-center">
                     <ShoppingCart className="mr-2 text-green-800" /> Quantity:{" "}
                     {product.quantity}
                   </h1>
-                  <h1 className="flex items-center mb-2">
+                  <h1 className="flex items-center">
                     <Box className="mr-2 text-green-800" /> In Stock:{" "}
                     {product.countInStock}
                   </h1>
                 </div>
               </div>
 
-              {/* Rating & Quantity Controls */}
-              <div className="flex items-center justify-between flex-wrap mb-4">
+              <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
                 <Ratings
                   value={product.rating}
                   text={`${product.numReviews} reviews`}
@@ -140,7 +134,7 @@ const ProductDetails = () => {
                   <div className="flex items-center space-x-3">
                     <button
                       onClick={() => setQty((prev) => Math.max(1, prev - 1))}
-                      className="p-2 bg-green-300 rounded-full text-black"
+                      className="p-2 bg-green-300 rounded-full text-black disabled:opacity-50"
                       disabled={qty <= 1}
                     >
                       -
@@ -154,7 +148,7 @@ const ProductDetails = () => {
                           Math.min(product.countInStock, prev + 1)
                         )
                       }
-                      className="p-2 bg-green-300 rounded-full text-black"
+                      className="p-2 bg-green-300 rounded-full text-black disabled:opacity-50"
                       disabled={qty >= product.countInStock}
                     >
                       +
@@ -163,18 +157,16 @@ const ProductDetails = () => {
                 )}
               </div>
 
-              {/* Add to Cart Button */}
               <button
                 onClick={addToCartHandler}
                 disabled={product.countInStock === 0}
-                className="bg-green-600 text-black py-2 px-6 rounded-lg hover:bg-green-500 transition-colors"
+                className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50"
               >
                 Add To Cart
               </button>
             </div>
 
-            {/* Product Tabs */}
-            <div className="w-full mt-12 bg-green-100 p-4 rounded-lg shadow-inner">
+            <div className="w-full mt-10 bg-green-100 p-6 rounded-lg">
               <ProductTabs
                 loadingProductReview={loadingProductReview}
                 userInfo={userInfo}
