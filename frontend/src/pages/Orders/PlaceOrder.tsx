@@ -63,7 +63,7 @@ const PlaceOrder = () => {
               </thead>
               <tbody>
                 {cart.cartItems.map((item: any, index: number) => (
-                  <tr key={index} className="border-t border-gray-200">
+                  <tr key={index} className="border-t hover:bg-gray-50 transition duration-150">
                     <td className="p-2">
                       <img
                         src={item.image}
