@@ -24,7 +24,7 @@ const Header = () => {
     <>
       <div className="flex flex-col xl:flex-row justify-center items-start px-4 gap-6">
         {/* Product Grid - visible on xl and above */}
-        <div className="hidden xl:block w-full">
+        <div className="hidden xl:block w-full xl:w-[40%">
           <div className="grid grid-cols-2 gap-4 shadow-lg rounded-lg">
             {data?.map((product: Product) => (
               <div key={product._id}>
@@ -35,7 +35,7 @@ const Header = () => {
         </div>
 
         {/* Product Carousel - always visible, stacked below on small screens */}
-        <div className="w-full">
+        <div className="w-full xl:w-[60%]">
           <ProductCarousel />
         </div>
       </div>
