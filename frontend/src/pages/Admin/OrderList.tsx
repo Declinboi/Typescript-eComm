@@ -34,7 +34,7 @@ const OrderList = () => {
 
               <tbody className="text-sm">
                 {orders.map((order: any) => (
-                  <tr key={order._id}>
+                  <tr key={order._id} className="border-t hover:bg-gray-50 transition duration-150">
                     <td>
                       <img
                         src={order?.orderItems[0].image}
