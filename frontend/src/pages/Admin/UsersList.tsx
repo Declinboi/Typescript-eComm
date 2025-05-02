@@ -67,7 +67,7 @@ const UserList: React.FC = () => {
       <h1 className="text-2xl text-center font-semibold mb-4">Users List</h1>
 
       {isLoading ? (
-        <Loader />
+        <Loader className="h-4 w-4 animate-spin text-emerald-800" />
       ) : error ? (
         <Message variant="error">
           {(error as { data?: { message?: string }; error?: string })?.data

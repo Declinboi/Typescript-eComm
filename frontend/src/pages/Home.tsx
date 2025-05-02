@@ -13,6 +13,8 @@ const Home = () => {
 
   return (
     <>
+    <div className="container">
+
       {!keyword ? <Header /> : null}
       {isLoading ? (
         <Loader className="h-8 w-8 animate-spin text-emerald-800" />
@@ -47,6 +49,7 @@ const Home = () => {
           </div>
         </>
       )}
+    </div>
     </>
   );
 };
