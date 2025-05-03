@@ -83,7 +83,7 @@ const ProductDetails = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-auto rounded-lg object-cover max-h-[500px] sm:max-h-[600px]"
+                className="w-full rounded-lg object-cover max-h-[500px] sm:max-h-[600px]"
               />
               <HeartIcon product={product} />
             </div>
