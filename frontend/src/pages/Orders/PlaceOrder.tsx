@@ -73,7 +73,7 @@ const PlaceOrder = () => {
                     </td>
                     <td className="p-2">
                       <Link
-                        to={`/productupdate/${item.product}`}
+                        to={`/product-details/${item.product}`}
                         className="text-blue-600 hover:underline"
                       >
                         {item.name}
