@@ -118,7 +118,7 @@ const ProductDetails = () => {
                 <div className="space-y-4 rounded-lg shadow-md p-4 bg-white">
                   <h1 className="flex items-center">
                     <Star className="mr-2 text-green-800" /> Ratings:{" "}
-                    {product.rating?.toFixed(1)}
+                    {product?.rating}
                   </h1>
                   <h1 className="flex items-center">
                     <ShoppingCart className="mr-2 text-green-800" /> Quantity:{" "}
