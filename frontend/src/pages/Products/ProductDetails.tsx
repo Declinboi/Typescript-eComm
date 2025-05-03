@@ -78,22 +78,28 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg justify-between mt-8 mx-auto max-w-screen-xl">
+          <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg justify-between mt-8 mx-auto max-w-screen-xl overflow-hidden">
             <div className="w-full xl:w-1/2 p-4">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full rounded-lg object-cover"
+                className="w-full rounded-lg object-cover max-h-[400px] sm:max-h-[300px]"
               />
               <HeartIcon product={product} />
             </div>
 
             <div className="w-full xl:w-1/2 flex flex-col justify-between p-4">
-              <h2 className="text-2xl font-semibold">{product.name}</h2>
-              <p className="my-4 text-green-500">{product.description}</p>
-              <p className="text-5xl my-4 font-extrabold">${product.price}</p>
+              <h2 className="text-2xl font-semibold break-words">
+                {product.name}
+              </h2>
+              <p className="my-4 text-green-500 break-words">
+                {product.description}
+              </p>
+              <p className="text-4xl sm:text-5xl my-4 font-extrabold">
+                ${product.price}
+              </p>
 
-              <div className="flex flex-wrap justify-between mb-6">
+              <div className="flex flex-col md:flex-row md:justify-between gap-6 mb-6">
                 <div className="space-y-4">
                   <h1 className="flex items-center">
                     <Store className="mr-2 text-green-800" /> Brand:{" "}
@@ -124,7 +130,7 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+              <div className="flex items-center flex-wrap justify-start gap-4 mb-4">
                 <Ratings
                   value={product.rating}
                   text={`${product.numReviews} reviews`}
@@ -166,7 +172,7 @@ const ProductDetails = () => {
               </button>
             </div>
 
-            <div className="w-full mt-10 bg-green-100 p-6 rounded-lg">
+            <div className="w-full mt-10 bg-green-100 p-6 rounded-lg overflow-x-auto">
               <ProductTabs
                 loadingProductReview={loadingProductReview}
                 userInfo={userInfo}
