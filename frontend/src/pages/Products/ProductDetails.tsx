@@ -79,7 +79,7 @@ const ProductDetails = () => {
       ) : (
         <>
           <div className="flex flex-wrap bg-gray-100 relative px-4 text-black rounded-lg shadow-lg justify-between mt-8 mx-auto max-w-screen-xl overflow-hidden">
-            <div className="w-full xl:w-1/2 p-4">
+            <div className="w-full xl:w-1/2 p-2">
               <img
                 src={product.image}
                 alt={product.name}
